@@ -1,44 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cyber-red">
 <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="8dXpGngdpoDMKGNNMTGyK3mXviBJS9_7W26Ks10ycTI" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Istiaque Ahmed Toyob — Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Istiaque Ahmed Toyob — Cyber Portfolio & System HUD</title>
+    
+    <!-- External Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         :root {
-            --red:     #E8202A;
-            --red-dim: #9B1017;
-            --white:   #F5F5F5;
-            --gray1:   #2a2a2a;
-            --gray2:   #1a1a1a;
-            --gray3:   #111111;
-            --muted:   #666666;
-            --muted2:  #444444;
+            /* Theme 1: Cyber Red (Default) */
+            --primary: #E8202A;
+            --primary-dim: #9B1017;
+            --primary-glow: rgba(232, 32, 42, 0.4);
+            --bg-dark: #0d0d0d;
+            --bg-card: #161616;
+            --bg-surface: #1e1e1e;
+            --text-main: #F5F5F5;
+            --text-muted: #888888;
+            --border-color: rgba(232, 32, 42, 0.25);
+            
+            /* GitHub Calendar Variables */
+            --gh-level-0: #141414;
+            --gh-level-0-border: #222222;
+            --gh-level-1: #4a080b;
+            --gh-level-2: #800e12;
+            --gh-level-3: #b8161d;
+            --gh-level-4: #e8202a;
+            --gh-cell-size: 11px;
+            --gh-cell-gap: 3px;
+        }
+
+        /* Full Site Theme Variations */
+        [data-theme="neon"] {
+            --primary: #d946ef;
+            --primary-dim: #8b1e8e;
+            --primary-glow: rgba(217, 70, 239, 0.4);
+            --bg-dark: #0b0f19;
+            --bg-card: #111827;
+            --bg-surface: #1f2937;
+            --border-color: rgba(217, 70, 239, 0.25);
+            --gh-level-0: #182030;
+            --gh-level-0-border: #28354d;
+            --gh-level-1: #4a124e;
+            --gh-level-2: #8b1e8e;
+            --gh-level-3: #d946ef;
+            --gh-level-4: #f472b6;
+        }
+
+        [data-theme="ocean"] {
+            --primary: #38bdf8;
+            --primary-dim: #0284c7;
+            --primary-glow: rgba(56, 189, 248, 0.4);
+            --bg-dark: #0a1120;
+            --bg-card: #0f172a;
+            --bg-surface: #1e293b;
+            --border-color: rgba(56, 189, 248, 0.25);
+            --gh-level-0: #152238;
+            --gh-level-0-border: #203354;
+            --gh-level-1: #0c4a6e;
+            --gh-level-2: #0284c7;
+            --gh-level-3: #38bdf8;
+            --gh-level-4: #a5f3fc;
+        }
+
+        [data-theme="matrix"] {
+            --primary: #22c55e;
+            --primary-dim: #15803d;
+            --primary-glow: rgba(34, 197, 94, 0.4);
+            --bg-dark: #051409;
+            --bg-card: #0a2010;
+            --bg-surface: #11321b;
+            --border-color: rgba(34, 197, 94, 0.25);
+            --gh-level-0: #0e2414;
+            --gh-level-0-border: #163a20;
+            --gh-level-1: #14532d;
+            --gh-level-2: #15803d;
+            --gh-level-3: #22c55e;
+            --gh-level-4: #4ade80;
+        }
+
+        [data-theme="github-dark"] {
+            --primary: #39d353;
+            --primary-dim: #0e4429;
+            --primary-glow: rgba(57, 211, 83, 0.3);
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --bg-surface: #21262d;
+            --border-color: rgba(48, 54, 61, 0.8);
+            --gh-level-0: #161b22;
+            --gh-level-0-border: #21262d;
+            --gh-level-1: #0e4429;
+            --gh-level-2: #006d32;
+            --gh-level-3: #26a641;
+            --gh-level-4: #39d353;
+        }
+
+        .dedsec-override-mode {
+            --primary: #ff0055 !important;
+            --primary-dim: #990033 !important;
+            --primary-glow: rgba(255, 0, 85, 0.8) !important;
+            --border-color: rgba(255, 0, 85, 0.5) !important;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #0d0d0d;
-            color: var(--white);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* PARTICLE CANVAS */
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-sharetech { font-family: 'Share Tech Mono', monospace; }
+
+        /* Canvas background */
         #particleCanvas {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.25;
+            opacity: 0.35;
         }
 
-        /* SCANLINE OVERLAY */
+        /* Scanline Overlay Effect */
         body::after {
             content: '';
             position: fixed;
@@ -48,158 +141,159 @@
                 0deg,
                 transparent,
                 transparent 2px,
-                rgba(255,255,255,0.008) 2px,
-                rgba(255,255,255,0.008) 4px
+                rgba(255,255,255,0.01) 2px,
+                rgba(255,255,255,0.01) 4px
             );
             pointer-events: none;
             z-index: 1;
         }
 
-        /* LAYOUT */
+        /* HUD Bracket Corners */
+        .hud-corner {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-color: var(--primary);
+            pointer-events: none;
+            transition: border-color 0.4s ease;
+        }
+        .hud-top-left { top: -2px; left: -2px; border-top: 3px solid; border-left: 3px solid; }
+        .hud-top-right { top: -2px; right: -2px; border-top: 3px solid; border-right: 3px solid; }
+        .hud-bottom-left { bottom: -2px; left: -2px; border-bottom: 3px solid; border-left: 3px solid; }
+        .hud-bottom-right { bottom: -2px; right: -2px; border-bottom: 3px solid; border-right: 3px solid; }
+
+        /* Segmented Block Progress Bar */
+        .progress-block {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            transition: all 0.15s ease-out;
+            position: relative;
+        }
+
+        .progress-block.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        /* Glitch Keyframe Animations */
+        @keyframes textGlitch {
+            0% { transform: translate(0); text-shadow: none; }
+            20% { transform: translate(-3px, 2px); text-shadow: 2px -2px #ff0055, -2px 2px var(--primary); }
+            40% { transform: translate(-1px, -2px); text-shadow: -2px 2px #ff0055, 2px -2px var(--primary); }
+            60% { transform: translate(3px, 1px); text-shadow: 2px 2px #ff0055, -1px -1px var(--primary); }
+            80% { transform: translate(1px, -1px); text-shadow: -1px -2px #ff0055, 2px 1px var(--primary); }
+            100% { transform: translate(0); text-shadow: none; }
+        }
+
+        .glitch-active {
+            animation: textGlitch 0.25s infinite;
+        }
+
+        @keyframes heavy-screen-glitch {
+            0% { transform: translate(0, 0) skew(0deg); filter: none; }
+            10% { transform: translate(-12px, 6px) skew(-4deg); filter: hue-rotate(90deg) contrast(200%); }
+            25% { transform: translate(14px, -8px) skew(5deg); filter: invert(0.8) hue-rotate(-120deg); }
+            40% { transform: translate(-10px, 4px) skew(-2deg); filter: contrast(300%) saturate(250%); }
+            60% { transform: translate(10px, -4px) skew(3deg); filter: hue-rotate(180deg); }
+            80% { transform: translate(-5px, 2px) skew(-1deg); filter: invert(0.2); }
+            100% { transform: translate(0, 0) skew(0deg); filter: none; }
+        }
+
+        .heavy-glitch {
+            animation: heavy-screen-glitch 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Loading Screen Layout */
+        #loader-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .hud-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
         .wrapper {
             position: relative;
             z-index: 2;
-            max-width: 900px;
+            max-width: 980px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
 
-        /* NAV */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            background: rgba(13,13,13,0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(232,32,42,0.18);
-            padding: 14px 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(13, 13, 13, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 24px;
+            transition: border-color 0.4s ease;
         }
 
-        .nav-logo {
+        .theme-select-hdr {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--red);
-            letter-spacing: 0.15em;
+            font-size: 0.72rem;
+            padding: 5px 10px;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
+        .theme-select-hdr:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
         }
 
-        .nav-links a {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--muted);
-            text-decoration: none;
-            letter-spacing: 0.08em;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--white); }
-
-        /* HERO */
-        header {
-            padding: 140px 0 80px;
-            border-bottom: 1px solid rgba(232,32,42,0.12);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 48px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-cover-wrap {
-            position: relative;
-            border: 1px solid rgba(232,32,42,0.18);
-            border-radius: 28px;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(232,32,42,0.18), rgba(17,17,17,0.95));
-            box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-        }
-
-        .cover-photo {
-            position: relative;
-            min-height: 220px;
-            background: linear-gradient(135deg, rgba(232,32,42,0.25), rgba(17,17,17,0.82));
-        }
-
-        .cover-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0.9;
-        }
-
-        .cover-photo::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(13,13,13,0.88), rgba(13,13,13,0.25));
-            pointer-events: none;
-        }
-
+        /* Hero Avatar Hex Container */
         .avatar-frame {
             position: relative;
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto;
         }
 
         .avatar-hex {
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
             overflow: hidden;
             position: relative;
-        }
-
-        .avatar-hex img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            background: var(--bg-surface);
         }
 
         .avatar-ring {
             position: absolute;
-            inset: -5px;
+            inset: -4px;
             clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-            background: var(--red);
+            background: var(--primary);
             z-index: -1;
             animation: ringPulse 3s ease-in-out infinite;
+            transition: background 0.4s ease;
         }
 
         @keyframes ringPulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; filter: drop-shadow(0 0 10px var(--red)); }
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; filter: drop-shadow(0 0 12px var(--primary)); transform: scale(1.02); }
         }
 
-        .hero-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--muted);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .hero-name {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: 0.02em;
-            color: var(--white);
-        }
-
+        /* Glitch text effect */
         .glitch {
             position: relative;
             display: inline-block;
@@ -213,150 +307,104 @@
         }
 
         .glitch::before {
-            color: var(--red);
-            animation: glitch1 5s infinite;
+            color: var(--primary);
+            animation: glitch1 4s infinite;
             clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
-        }
-
-        .glitch::after {
-            color: rgba(255,255,255,0.6);
-            animation: glitch2 5s infinite;
-            clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
         }
 
         @keyframes glitch1 {
             0%, 90%, 100% { transform: translateX(0); opacity: 0; }
-            92% { transform: translateX(-3px); opacity: 1; }
-            94% { transform: translateX(3px); opacity: 1; }
+            92% { transform: translateX(-3px); opacity: 0.8; }
+            94% { transform: translateX(3px); opacity: 0.8; }
             96% { transform: translateX(0); opacity: 0; }
         }
 
-        @keyframes glitch2 {
-            0%, 91%, 100% { transform: translateX(0); opacity: 0; }
-            93% { transform: translateX(3px); opacity: 1; }
-            95% { transform: translateX(-3px); opacity: 1; }
-            97% { transform: translateX(0); opacity: 0; }
-        }
-
-        .hero-role {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-top: 10px;
-            letter-spacing: 0.06em;
-        }
-
-        .hero-socials {
-            display: flex;
-            gap: 10px;
-            margin-top: 24px;
-        }
-
+        /* Social buttons */
         .social-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--gray2);
-            border: 1px solid var(--red);
+            width: 38px;
+            height: 38px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: var(--text-main);
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
         }
 
         .social-btn:hover {
-            background: var(--red);
-            box-shadow: 0 0 14px rgba(232,32,42,0.35);
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 14px var(--primary-glow);
             transform: translateY(-2px);
         }
 
-        /* SECTION HEADER */
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
+        .gh-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.4s ease;
         }
 
-        .section-label span {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+        .gh-grid {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(7, var(--gh-cell-size));
+            gap: var(--gh-cell-gap);
         }
 
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(232,32,42,0.4), transparent);
-        }
-
-        section { padding: 64px 0; }
-
-        /* TERMINAL BIO */
-        .terminal {
-            background: var(--gray2);
-            border: 1px solid rgba(232,32,42,0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .terminal-bar {
-            background: var(--gray3);
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(232,32,42,0.1);
-        }
-
-        .terminal-dot {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-        }
-
-        .t-red { background: #E8202A; }
-        .t-gray { background: #555; }
-        .t-light { background: #888; }
-
-        .terminal-title {
+        .gh-months-header {
+            display: grid;
+            grid-auto-flow: column;
+            gap: var(--gh-cell-gap);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--muted);
-            margin-left: 8px;
-            letter-spacing: 0.1em;
-        }
-
-        .terminal-body {
-            padding: 24px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            line-height: 1.8;
-            color: #999;
-        }
-
-        .terminal-body .prompt { color: var(--red); }
-        .terminal-body .cmd { color: var(--white); }
-        .terminal-body .out { color: #777; }
-        .terminal-body .hl { color: #bbb; }
-        .terminal-body .cursor {
-            display: inline-block;
-            width: 8px;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-left: 28px;
+            margin-bottom: 6px;
             height: 14px;
-            background: var(--red);
-            vertical-align: middle;
-            animation: blink 1s step-end infinite;
-            margin-left: 2px;
         }
 
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .gh-days-header {
+            display: grid;
+            grid-template-rows: repeat(7, var(--gh-cell-size));
+            gap: var(--gh-cell-gap);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: var(--text-muted);
+            width: 24px;
+        }
 
-        /* SKILLS HEX GRID */
+        .gh-days-header span {
+            height: var(--gh-cell-size);
+            line-height: var(--gh-cell-size);
+        }
+
+        .gh-cell {
+            width: var(--gh-cell-size);
+            height: var(--gh-cell-size);
+            border-radius: 2px;
+            transition: transform 0.15s ease, outline 0.1s ease;
+            cursor: pointer;
+        }
+
+        .gh-cell:hover {
+            transform: scale(1.4);
+            z-index: 20;
+            outline: 1.5px solid var(--text-main);
+        }
+
+        .gh-level-0 { background-color: var(--gh-level-0); border: 1px solid var(--gh-level-0-border); }
+        .gh-level-1 { background-color: var(--gh-level-1); }
+        .gh-level-2 { background-color: var(--gh-level-2); }
+        .gh-level-3 { background-color: var(--gh-level-3); }
+        .gh-level-4 { background-color: var(--gh-level-4); }
+
+        /* Hexagon Grid for Skills */
         .hex-grid {
             display: flex;
             flex-wrap: wrap;
@@ -366,31 +414,35 @@
 
         .hex-card {
             position: relative;
-            width: 140px;
+            width: 130px;
             cursor: pointer;
         }
 
         .hex-bg {
-            width: 140px;
-            height: 160px;
+            width: 130px;
+            height: 150px;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: var(--gray2);
+            background: var(--bg-card);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
-        .hex-card:hover .hex-bg { background: var(--gray1); }
+        .hex-card:hover .hex-bg {
+            background: var(--bg-surface);
+            transform: translateY(-4px);
+        }
 
         .hex-outer {
-            width: 148px;
-            height: 169px;
+            width: 138px;
+            height: 158px;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: var(--red-dim);
+            background: var(--primary-dim);
             position: absolute;
             top: -4px;
             left: -4px;
@@ -399,364 +451,133 @@
         }
 
         .hex-card:hover .hex-outer {
-            background: var(--red);
-            filter: drop-shadow(0 0 10px rgba(232,32,42,0.5));
+            background: var(--primary);
+            filter: drop-shadow(0 0 10px var(--primary-glow));
         }
 
-        .hex-icon {
-            width: 30px;
-            height: 30px;
-            margin-bottom: 10px;
-            color: var(--white);
-            transition: color 0.3s;
-        }
-
-        .hex-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.55rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: #aaa;
-            transition: color 0.3s;
-        }
-
-        .hex-card:hover .hex-name { color: var(--white); }
-
-        .hex-level {
-            position: absolute;
-            bottom: 26px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 55%;
-            height: 2px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .hex-level-fill {
-            height: 100%;
-            border-radius: 2px;
-            background: var(--red);
-        }
-
-        /* PROJECTS */
-        .project-card {
-            background: var(--gray2);
-            border: 1px solid rgba(255,255,255,0.06);
+        /* Terminal Window */
+        .terminal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 24px;
+            overflow: hidden;
+            transition: border-color 0.4s ease;
+        }
+
+        .terminal-bar {
+            background: var(--bg-surface);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: #b0b0b0;
+        }
+
+        .cmd-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cmd-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 22px;
             position: relative;
             overflow: hidden;
-            transition: all 0.25s;
-            margin-bottom: 14px;
+            transition: all 0.3s ease;
         }
 
         .project-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
-            width: 3px;
+            width: 4px;
             height: 100%;
-            background: var(--red);
+            background: var(--primary);
+            transition: background 0.4s ease;
         }
 
         .project-card:hover {
-            border-color: rgba(232,32,42,0.25);
-            transform: translateX(4px);
-            box-shadow: 0 0 20px rgba(232,32,42,0.06);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 15px var(--primary-glow);
         }
 
-        .project-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
-            color: var(--muted);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
-        .project-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            margin-bottom: 8px;
-            color: var(--white);
-        }
-
-        .project-desc {
-            font-size: 0.88rem;
-            color: #777;
-            line-height: 1.65;
-        }
-
-        .project-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .stack-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.55rem;
-            padding: 4px 10px;
-            background: rgba(232,32,42,0.08);
-            border: 1px solid rgba(232,32,42,0.25);
-            border-radius: 4px;
-            color: #ccc;
-            letter-spacing: 0.06em;
-        }
-
-        .project-status {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.52rem;
-            padding: 4px 10px;
-            border-radius: 20px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .status-active {
-            background: rgba(232,32,42,0.12);
-            color: #ff6b6b;
-            border: 1px solid rgba(232,32,42,0.35);
-        }
-
-        .status-planned {
-            background: rgba(255,255,255,0.05);
-            color: var(--muted);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* LIVE TICKER */
-        .ticker-wrap {
-            background: var(--gray2);
-            border: 1px solid rgba(232,32,42,0.15);
+        /* Toast Notifications */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-surface);
+            border: 1px solid var(--primary);
+            color: var(--text-main);
+            padding: 10px 20px;
             border-radius: 8px;
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            overflow: hidden;
-        }
-
-        .ticker-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
-            color: var(--red);
-            letter-spacing: 0.15em;
-            white-space: nowrap;
-            padding: 4px 10px;
-            border: 1px solid var(--red);
-            border-radius: 4px;
+            font-size: 0.75rem;
+            z-index: 300;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
-        .ticker-dot {
-            width: 6px; height: 6px;
-            background: var(--red);
-            border-radius: 50%;
-            animation: blink 1s ease-in-out infinite;
-            flex-shrink: 0;
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
-        #tickerText {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            color: #888;
-            letter-spacing: 0.04em;
-        }
-
-        /* STATS ROW */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-
-        .stat-card {
-            background: var(--gray2);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.25s;
-        }
-
-        .stat-card:hover {
-            border-color: rgba(232,32,42,0.3);
-            box-shadow: 0 0 16px rgba(232,32,42,0.06);
-        }
-
-        .stat-num {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            display: block;
-        }
-
-        .stat-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.52rem;
-            color: var(--muted);
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
-
-        /* SLIDESHOW */
-        .slide-wrap {
-            position: relative;
-            height: 240px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(232,32,42,0.15);
-        }
-
-        .slide { display: none; position: absolute; inset: 0; }
-        .slide.active { display: block; animation: fadeEffect 0.8s; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45) saturate(0.3); }
-
-        @keyframes fadeEffect { from { opacity: 0; } to { opacity: 1; } }
-
-        .slide-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(13,13,13,0.65), transparent);
-            display: flex;
-            align-items: flex-end;
-            padding: 20px;
-        }
-
-        .slide-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem;
-            color: #aaa;
-            letter-spacing: 0.14em;
-        }
-
-        /* DRAWER */
+        /* Drawer Overlay */
         #drawer {
             position: fixed;
             top: 0; right: 0;
             height: 100%;
-            width: 310px;
-            background: rgba(17,17,17,0.98);
-            border-left: 1px solid rgba(232,32,42,0.2);
-            z-index: 200;
-            padding: 32px 24px;
+            width: 330px;
+            max-width: 85vw;
+            background: rgba(18, 18, 18, 0.96);
+            border-left: 1px solid var(--border-color);
+            z-index: 250;
+            padding: 28px 20px;
             overflow-y: auto;
             transform: translateX(100%);
             transition: transform 0.3s ease;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
         }
 
         #drawer.open { transform: translateX(0); }
 
-        .drawer-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(232,32,42,0.15);
-        }
-
-        .drawer-input {
-            width: 100%;
-            background: var(--gray3);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            padding: 12px;
-            color: var(--white);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            outline: none;
-            margin-bottom: 12px;
-            transition: border-color 0.2s;
-            resize: vertical;
-        }
-
-        .drawer-input:focus { border-color: var(--red); }
-
-        .drawer-btn {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background: var(--red);
-            color: #fff;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .btn-primary:hover { background: #c41820; }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--muted);
-        }
-
-        .btn-secondary:hover { color: var(--white); border-color: rgba(255,255,255,0.25); }
-
-        /* EDIT TRIGGER */
-        .edit-trigger {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 46px;
-            height: 46px;
-            background: var(--gray2);
-            border: 1px solid var(--red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            cursor: pointer;
-            z-index: 150;
-            transition: all 0.2s;
-        }
-
-        .edit-trigger:hover {
-            background: var(--red);
-            box-shadow: 0 0 18px rgba(232,32,42,0.4);
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid rgba(232,32,42,0.1);
-            padding: 32px 0;
-            text-align: center;
-        }
-
-        .footer-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
-            color: var(--muted2);
-            letter-spacing: 0.12em;
-        }
-
-        /* SCROLL REVEAL */
+        /* Scroll Reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(22px);
+            transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
@@ -765,348 +586,335 @@
             transform: translateY(0);
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 640px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-socials { justify-content: center; }
-            .stats-row { grid-template-columns: 1fr; }
-            .hex-grid { gap: 12px; }
-            .hex-card { width: 110px; }
-            .hex-bg { width: 110px; height: 126px; }
-            .hex-outer { width: 118px; height: 135px; }
-        }
+        /* Terminal log scrollbar */
+        #loader-console::-webkit-scrollbar { width: 4px; }
+        #loader-console::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.4); }
+        #loader-console::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
     </style>
 </head>
 <body>
 
 <canvas id="particleCanvas"></canvas>
 
-<!-- NAV -->
+<!-- INITIAL SCI-FI SCI-TECH LOADING OVERLAY SCREEN -->
+<div id="loader-overlay" class="w-screen h-screen fixed inset-0 z-[999]">
+
+    <!-- START ENTRY OVERLAY MODAL -->
+    <div id="start-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 backdrop-blur-md p-4 transition-all duration-500">
+        <div class="relative p-6 md:p-10 hud-card rounded-xl max-w-lg w-11/12 text-center">
+            <div class="hud-corner hud-top-left"></div>
+            <div class="hud-corner hud-top-right"></div>
+            <div class="hud-corner hud-bottom-left"></div>
+            <div class="hud-corner hud-bottom-right"></div>
+
+            <div class="mb-6 flex justify-center">
+                <div class="w-16 h-16 rounded-full border-2 flex items-center justify-center animate-pulse" style="border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow);">
+                    <i class="fa-solid fa-terminal text-2xl" style="color: var(--primary);"></i>
+                </div>
+            </div>
+
+            <h1 class="font-orbitron text-xl md:text-2xl font-bold tracking-wider mb-1" style="color: var(--primary);">IAT_SYSTEM OS // v2.4</h1>
+            <p class="font-mono text-xs text-gray-400 tracking-widest uppercase mb-8">SECURE BREACH &amp; PORTFOLIO HANDSHAKE</p>
+
+            <button id="btn-initialize" onclick="initializeSystem()" class="w-full py-3.5 px-6 font-orbitron font-bold text-sm tracking-widest uppercase rounded border transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 text-white" style="background: rgba(255, 255, 255, 0.05); border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow);">
+                <i class="fa-solid fa-power-off text-base" style="color: var(--primary);"></i>
+                <span>INITIALIZE BREACH</span>
+            </button>
+            <p class="mt-4 text-[10px] font-mono text-gray-500 uppercase tracking-widest">Click button or press any key to enter</p>
+        </div>
+    </div>
+
+    <!-- MAIN LOADING HUD PANEL -->
+    <main id="main-hud" class="relative z-20 w-11/12 max-w-2xl hud-card p-6 md:p-8 rounded-xl font-sharetech">
+        <div class="hud-corner hud-top-left"></div>
+        <div class="hud-corner hud-top-right"></div>
+        <div class="hud-corner hud-bottom-left"></div>
+        <div class="hud-corner hud-bottom-right"></div>
+
+        <!-- Header Info Bar -->
+        <header class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+                <span id="brand-icon" class="text-xl animate-pulse" style="color: var(--primary);">
+                    <i class="fa-solid fa-network-wired"></i>
+                </span>
+                <div>
+                    <h2 id="brand-title" class="font-orbitron text-base md:text-lg font-bold tracking-wider" style="color: var(--primary);">ctOS_PORTFOLIO_INFILTRATION</h2>
+                    <p class="text-[10px] font-mono text-gray-400 tracking-widest uppercase">TARGET: ISTIAQUE_AHMED_TOYOB_CORE</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="text-xs font-mono" style="color: var(--primary);" id="clock-display">00:00:00</div>
+                <div class="text-[10px] text-emerald-400 font-mono tracking-widest flex items-center justify-end gap-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>LINK ACTIVE</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Center Progress Bar Section -->
+        <section class="my-6">
+            <div class="flex justify-between items-end mb-2">
+                <div>
+                    <span class="text-xs font-mono font-semibold tracking-widest uppercase block text-gray-400">SYSTEM STATUS</span>
+                    <span id="status-badge" class="text-xs md:text-sm font-bold tracking-wider text-gray-200">DECRYPTING PORTFOLIO MODULES...</span>
+                </div>
+                <div class="text-right">
+                    <span id="percent-text" class="font-orbitron text-3xl md:text-5xl font-extrabold tracking-tight" style="color: var(--primary); text-shadow: 0 0 15px var(--primary-glow);">
+                        0<span class="text-2xl">%</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Segmented Block Loading Bar Container (24 Blocks) -->
+            <div id="block-container" class="grid grid-cols-12 md:grid-cols-24 gap-1 p-2 bg-black/60 border border-white/10 rounded shadow-inner my-4 h-11 items-center">
+                <!-- Javascript dynamically populates 24 interactive blocks here -->
+            </div>
+
+            <div class="flex justify-between text-[10px] font-mono text-gray-400 tracking-widest uppercase">
+                <span>SECTOR: 0x89F</span>
+                <span id="speed-indicator">TRANSFER: 142.8 MB/S</span>
+                <span>NODES: 24/24</span>
+            </div>
+        </section>
+
+        <!-- Hacker Console Output Log -->
+        <section class="mt-6">
+            <div class="flex items-center justify-between bg-black/40 border-x border-t border-white/10 px-3 py-1 text-[11px] font-mono text-gray-300">
+                <span class="flex items-center gap-2" style="color: var(--primary);"><i class="fa-solid fa-terminal text-xs"></i> TERMINAL_DECRYPT_LOG</span>
+                <span class="text-gray-500">v2.4.0</span>
+            </div>
+            <div id="loader-console" class="bg-black/80 border border-white/10 p-3 h-28 overflow-y-auto text-xs font-mono text-gray-300 space-y-1 rounded-b">
+                <div class="text-gray-500">[SYSTEM] Awaiting initialization sequence...</div>
+            </div>
+        </section>
+
+        <!-- Interactive Control Bar -->
+        <footer class="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-2 items-center justify-between font-mono">
+            <div class="flex flex-wrap gap-2">
+                <button id="btn-restart" onclick="restartBreach()" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-xs font-semibold rounded tracking-wider uppercase transition">
+                    <i class="fa-solid fa-rotate-right mr-1" style="color: var(--primary);"></i> RESTART
+                </button>
+                <button id="btn-glitch" onclick="triggerGlitchAndSound()" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-xs font-semibold rounded tracking-wider uppercase transition">
+                    <i class="fa-solid fa-bolt mr-1" style="color: var(--primary);"></i> GLITCH
+                </button>
+                <button id="btn-dedsec" onclick="toggleDedsecOverride()" class="px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/40 text-red-400 text-xs font-semibold rounded tracking-wider uppercase transition">
+                    <i class="fa-solid fa-skull mr-1"></i> OVERRIDE
+                </button>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <button id="btn-sound" onclick="toggleSoundSFX()" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 text-gray-300 text-xs rounded border border-white/10 flex items-center gap-2">
+                    <i class="fa-solid fa-volume-high" id="sound-icon"></i> <span id="sound-text">SFX: ON</span>
+                </button>
+
+                <button onclick="skipLoading()" class="px-3 py-1.5 rounded text-xs font-bold text-white uppercase transition-all shadow" style="background: var(--primary);">
+                    ENTER PORTFOLIO <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<!-- MAIN NAVIGATION -->
 <nav>
-    <div class="nav-logo">IAT['-']</div>
-    <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-    </ul>
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+        <a href="#" class="font-mono text-sm font-bold tracking-wider flex items-center gap-2" style="color: var(--primary);">
+            <i class="fa-solid fa-terminal text-xs"></i> IAT['-']
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center gap-6 text-xs font-mono">
+            <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+            <a href="#activity" class="text-gray-400 hover:text-white transition-colors">Activity</a>
+            <a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a>
+            <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a>
+        </div>
+
+        <!-- Theme Controls -->
+        <div class="flex items-center gap-3">
+            <!-- Re-trigger Loading HUD -->
+            <button onclick="reopenLoaderOverlay()" class="px-2.5 py-1 text-xs font-mono rounded border border-white/10 bg-black/40 text-gray-300 hover:text-white flex items-center gap-1.5 transition-all" title="View System Breach HUD">
+                <i class="fa-solid fa-terminal text-xs text-amber-400"></i>
+                <span class="hidden sm:inline">System HUD</span>
+            </button>
+
+            <!-- Auto Theme Toggle Button -->
+            <button id="autoThemeBtn" onclick="toggleAutoTheme()" class="px-2.5 py-1 text-xs font-mono rounded border border-white/10 bg-black/40 text-gray-300 hover:text-white flex items-center gap-1.5 transition-all" title="Toggle Automatic Theme Switching">
+                <i class="fa-solid fa-rotate text-xs text-emerald-400" id="autoThemeIcon"></i>
+                <span class="hidden sm:inline" id="autoThemeStatus">Auto Theme: OFF</span>
+            </button>
+
+            <!-- Theme Selector Dropdown -->
+            <select id="headerThemeSelect" onchange="changeTheme(this.value, true)" class="theme-select-hdr">
+                <option value="cyber-red">🔴 Cyber Red</option>
+                <option value="neon">🟣 Neon Cyber</option>
+                <option value="ocean">🔵 Ocean Ice</option>
+                <option value="matrix">🟢 Matrix Hack</option>
+                <option value="github-dark">⬛ GitHub Dark</option>
+            </select>
+
+            <!-- Mobile Menu Hamburger -->
+            <button onclick="toggleMobileNav()" class="md:hidden text-gray-300 hover:text-white text-lg px-2 py-1">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileNavMenu" class="hidden md:hidden pt-3 pb-2 border-t border-white/10 mt-2 flex flex-col gap-2 font-mono text-xs">
+        <a href="#about" onclick="toggleMobileNav()" class="py-1 px-2 text-gray-300 hover:bg-white/5 rounded">About</a>
+        <a href="#activity" onclick="toggleMobileNav()" class="py-1 px-2 text-gray-300 hover:bg-white/5 rounded">Activity</a>
+        <a href="#skills" onclick="toggleMobileNav()" class="py-1 px-2 text-gray-300 hover:bg-white/5 rounded">Skills</a>
+        <a href="#projects" onclick="toggleMobileNav()" class="py-1 px-2 text-gray-300 hover:bg-white/5 rounded">Projects</a>
+    </div>
 </nav>
 
+<!-- MAIN PORTFOLIO WRAPPER -->
 <div class="wrapper">
 
-    <!-- HERO -->
-    <header>
-        <div class="hero-cover-wrap">
-            <div class="cover-photo">
-                <img src="Image2.jpg" alt="Cover photo" onerror="this.style.display='none'">
-            </div>
-            <div class="hero-grid" style="padding: 32px 32px 36px; margin-top: -100px;">
-                <div class="avatar-frame">
+    <header class="pt-28 pb-12 border-b border-white/10">
+        <div class="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-black/60 to-black/90 border" style="border-color: var(--border-color);">
+            <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                
+                <!-- Avatar -->
+                <div class="avatar-frame flex-shrink-0">
                     <div class="avatar-ring"></div>
                     <div class="avatar-hex">
-                        <img src="Image.jpg" alt="Istiaque Ahmed Toyob" onerror="this.src='https://placehold.co/400x400/1a1a1a/E8202A?text=IAT'">
+                        <img src="Image.jpg" alt="Istiaque Ahmed Toyob" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/1a1a1a/E8202A?text=IAT'">
                     </div>
                 </div>
-                <div>
-                    <div class="hero-tag">Founder &amp; CEO · Zoomerz</div>
-                    <h1 class="hero-name">
-                        <span class="glitch" data-text="ISTIAQUE">ISTIAQUE</span><br>
-                        <span style="color: var(--muted); font-weight: 400;">AHMED TOYOB</span>
+
+                <!-- Info -->
+                <div class="flex-grow">
+                    <div class="text-xs font-mono tracking-widest text-gray-400 uppercase mb-2">Founder &amp; CEO · Zoomerz</div>
+                    <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-2">
+                        <span class="glitch" data-text="ISTIAQUE">ISTIAQUE</span> 
+                        <span class="text-gray-400 font-normal">AHMED TOYOB</span>
                     </h1>
-                    <div class="hero-role">Web Engineer · AI Systems · Cybersecurity</div>
-                    <div class="hero-socials">
-                    <a href="mailto:istiaque057@gmail.com" class="social-btn" title="Email">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    </a>
-                    <a href="https://wa.me/8801935766234" target="_blank" class="social-btn" title="WhatsApp">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </a>
-                    <a href="https://github.com/istiaquelll" target="_blank" class="social-btn" title="GitHub">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/istiaque.at_23" target="_blank" class="social-btn" title="Instagram">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                    </a>
-                    <a href="https://www.facebook.com/istiaque.at" target="_blank" class="social-btn" title="Facebook">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
+                    <p class="font-mono text-xs sm:text-sm text-gray-400 mb-4">
+                        Web Engineer · AI Systems Architecture · Cybersecurity Enthusiast
+                    </p>
+
+                    <!-- Contact & Social Links -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                        <a href="mailto:istiaque057@gmail.com" class="social-btn" title="Email" onclick="copyToClipboard('istiaque057@gmail.com', 'Email copied to clipboard!')">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/8801935766234" target="_blank" class="social-btn" title="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://github.com/istiaquelll" target="_blank" class="social-btn" title="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/istiaque.at_23" target="_blank" class="social-btn" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/istiaque.at" target="_blank" class="social-btn" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <button onclick="copyToClipboard('+8801935766234', 'Phone number copied!')" class="px-3 py-2 rounded-lg text-xs font-mono bg-white/5 border hover:bg-white/10 transition-colors flex items-center gap-2" style="border-color: var(--border-color);">
+                            <i class="fa-solid fa-phone text-xs" style="color: var(--primary);"></i>
+                            <span>+880 1935-766234</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- LIVE TICKER -->
-    <section style="padding: 32px 0 0;">
-        <div class="ticker-wrap reveal">
-            <span class="ticker-label">LIVE</span>
-            <div class="ticker-dot"></div>
-            <span id="tickerText">Initializing...</span>
+    <!-- LIVE TICKER BANNER -->
+    <section class="pt-6 pb-2">
+        <div class="rounded-xl p-3 flex items-center gap-3 bg-black/40 border border-white/10 reveal">
+            <span class="text-xs font-mono px-2 py-0.5 rounded font-bold uppercase tracking-wider text-white" style="background: var(--primary);">LIVE</span>
+            <div class="w-2 h-2 rounded-full animate-ping" style="background: var(--primary);"></div>
+            <div id="tickerText" class="font-mono text-xs text-gray-300 truncate">Initializing live updates...</div>
         </div>
     </section>
 
-    <!-- STATS -->
-    <section style="padding: 32px 0;" id="about">
-        <div class="stats-row reveal">
-            <div class="stat-card">
-                <span class="stat-num">06</span>
-                <div class="stat-label">Active Projects</div>
+    <!-- STATS ROW -->
+    <section class="py-6" id="about">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal">
+            <div class="bg-black/40 border border-white/10 rounded-xl p-5 text-center hover:border-white/20 transition-all">
+                <span class="text-3xl font-bold text-white block">06</span>
+                <span class="font-mono text-xs text-gray-400 uppercase tracking-widest mt-1 block">Active Projects</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-num">19</span>
-                <div class="stat-label">Years Old</div>
+            <div class="bg-black/40 border border-white/10 rounded-xl p-5 text-center hover:border-white/20 transition-all">
+                <span class="text-3xl font-bold text-white block">19</span>
+                <span class="font-mono text-xs text-gray-400 uppercase tracking-widest mt-1 block">Years Old</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-num">∞</span>
-                <div class="stat-label">Lines of Vision</div>
+            <div class="bg-black/40 border border-white/10 rounded-xl p-5 text-center hover:border-white/20 transition-all">
+                <span class="text-3xl font-bold text-white block">∞</span>
+                <span class="font-mono text-xs text-gray-400 uppercase tracking-widest mt-1 block">Lines of Vision</span>
             </div>
         </div>
     </section>
-    <section>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Contribution Calendar & Visualizer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
 
-        :root {
-            --bg-page: #0d1117;
-            --bg-card: #161b22;
-            --bg-card-hover: #1c2128;
-            --border-color: #30363d;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --cell-size: 11px;
-            --cell-gap: 3px;
-            
-            /* Default GitHub Dark Theme */
-            --level-0: #161b22;
-            --level-0-border: #21262d;
-            --level-1: #0e4429;
-            --level-2: #006d32;
-            --level-3: #26a641;
-            --level-4: #39d353;
-        }
-
-        /* Themes Configuration */
-        [data-theme="github-light"] {
-            --bg-page: #f6f8fa;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f3f4f6;
-            --border-color: #d0d7de;
-            --text-primary: #1f2328;
-            --text-secondary: #656d76;
-            --level-0: #ebedf0;
-            --level-0-border: rgba(27,31,36,0.06);
-            --level-1: #9be9a8;
-            --level-2: #40c463;
-            --level-3: #30a14e;
-            --level-4: #216e39;
-        }
-
-        [data-theme="halloween"] {
-            --bg-page: #0d1117;
-            --bg-card: #161b22;
-            --bg-card-hover: #1c2128;
-            --border-color: #30363d;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --level-0: #161b22;
-            --level-0-border: #30363d;
-            --level-1: #631c03;
-            --level-2: #bd561d;
-            --level-3: #fa7a18;
-            --level-4: #fdd835;
-        }
-
-        [data-theme="neon"] {
-            --bg-page: #090d16;
-            --bg-card: #111827;
-            --bg-card-hover: #1f2937;
-            --border-color: #1f2937;
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --level-0: #182030;
-            --level-0-border: #28354d;
-            --level-1: #4a124e;
-            --level-2: #8b1e8e;
-            --level-3: #d946ef;
-            --level-4: #f472b6;
-        }
-
-        [data-theme="ocean"] {
-            --bg-page: #08101e;
-            --bg-card: #0f172a;
-            --bg-card-hover: #1e293b;
-            --border-color: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #64748b;
-            --level-0: #152238;
-            --level-0-border: #203354;
-            --level-1: #0c4a6e;
-            --level-2: #0284c7;
-            --level-3: #38bdf8;
-            --level-4: #a5f3fc;
-        }
-
-        body {
-            background-color: var(--bg-page);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .custom-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .text-sec {
-            color: var(--text-secondary);
-        }
-
-        .graph-grid {
-            display: grid;
-            grid-auto-flow: column;
-            grid-template-rows: repeat(7, var(--cell-size));
-            gap: var(--cell-gap);
-        }
-
-        .months-header {
-            display: grid;
-            grid-auto-flow: column;
-            gap: var(--cell-gap);
-            font-size: 10px;
-            color: var(--text-secondary);
-            margin-left: 28px;
-            margin-bottom: 6px;
-            height: 14px;
-        }
-
-        .days-header {
-            display: grid;
-            grid-template-rows: repeat(7, var(--cell-size));
-            gap: var(--cell-gap);
-            font-size: 9px;
-            color: var(--text-secondary);
-            width: 24px;
-        }
-
-        .days-header span {
-            height: var(--cell-size);
-            line-height: var(--cell-size);
-        }
-
-        .cell {
-            width: var(--cell-size);
-            height: var(--cell-size);
-            border-radius: 2px;
-            transition: transform 0.15s ease, outline 0.1s ease;
-        }
-
-        .cell:hover {
-            transform: scale(1.3);
-            z-index: 20;
-            outline: 1px solid var(--text-primary);
-        }
-
-        .level-0 { background-color: var(--level-0); border: 1px solid var(--level-0-border); }
-        .level-1 { background-color: var(--level-1); }
-        .level-2 { background-color: var(--level-2); }
-        .level-3 { background-color: var(--level-3); }
-        .level-4 { background-color: var(--level-4); }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            height: 6px;
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-page);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 3px;
-        }
-    </style>
-</head>
-<body class="min-h-screen p-4 md:p-8 flex flex-col justify-between">
-
-    <div class="max-w-6xl mx-auto w-full">
-        <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b pb-4" style="border-color: var(--border-color);">
-            <div class="flex items-center gap-3">
-                <div class="p-2.5 rounded-lg text-xl" style="background-color: var(--bg-card); border: 1px solid var(--border-color)">
-                    <i class="fa-brands fa-github text-2xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold tracking-tight">GitHub Contribution Visualizer</h1>
-                    <p class="text-xs text-sec">Interactive Analytics & Grid Generator</p>
-                </div>
-            </div>
-
-            <!-- Controls and Preset Bar -->
-            <div class="flex flex-wrap items-center gap-2">
-                <select id="themeSelect" onchange="changeTheme(this.value)" class="text-xs px-3 py-2 rounded-md font-medium cursor-pointer focus:outline-none custom-card text-sec hover:text-white">
-                    <option value="github-dark">Theme: GitHub Dark</option>
-                    <option value="halloween">Theme: Halloween</option>
-                    <option value="neon">Theme: Neon Cyberpunk</option>
-                    <option value="ocean">Theme: Ocean Ice</option>
-                </select>
-
-                <select id="presetSelect" onchange="loadPreset(this.value)" class="text-xs px-3 py-2 rounded-md font-medium cursor-pointer focus:outline-none custom-card text-sec hover:text-white">
-                    <option value="default">Preset: Default (istiaque07)</option>
-                </select>
-            </div>
-        </header>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-            <div class="custom-card p-4 rounded-xl">
-                <div class="text-xs font-medium text-sec mb-1">Total Contributions</div>
-                <div class="text-2xl font-bold" id="stat-total">0</div>
-            </div>
-            <div class="custom-card p-4 rounded-xl">
-                <div class="text-xs font-medium text-sec mb-1">Current Streak</div>
-                <div class="text-2xl font-bold text-emerald-400" id="stat-current-streak">0 <span class="text-xs font-normal text-sec">days</span></div>
-            </div>
-            <div class="custom-card p-4 rounded-xl">
-                <div class="text-xs font-medium text-sec mb-1">Longest Streak</div>
-                <div class="text-2xl font-bold text-amber-400" id="stat-longest-streak">0 <span class="text-xs font-normal text-sec">days</span></div>
-            </div>
-            <div class="custom-card p-4 rounded-xl">
-                <div class="text-xs font-medium text-sec mb-1">Active Days</div>
-                <div class="text-2xl font-bold text-cyan-400" id="stat-active-rate">0%</div>
-            </div>
+    <!-- GITHUB HEATMAP SECTION -->
+    <section id="activity" class="py-6">
+        <div class="flex items-center gap-3 mb-6">
+            <h2 class="text-lg font-bold tracking-wider uppercase text-white font-mono">Activity Heatmap</h2>
+            <div class="h-px flex-grow bg-gradient-to-r from-white/20 to-transparent"></div>
         </div>
 
-        <div class="custom-card rounded-xl p-5 shadow-xl relative mb-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                <div>
-                    <h2 class="text-sm font-semibold flex items-center gap-2" id="user-heading">
-                        <span id="username-display">@istiaque07</span>
-                    </h2>
-                    <p class="text-xs text-sec mt-0.5" id="year-range-display">371 days of activity</p>
+        <div class="gh-card reveal">
+            <!-- Header Controls -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-lg bg-black/50 border border-white/10" style="color: var(--primary);">
+                        <i class="fa-brands fa-github text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-semibold tracking-wide text-white font-mono">GitHub Contribution Calendar</h3>
+                        <p class="text-xs text-gray-400 font-mono">371 Days Active Data Tracking</p>
+                    </div>
                 </div>
-                <div class="text-xs text-sec bg-black/20 px-3 py-1.5 rounded-lg border border-white/5 font-mono" id="selected-cell-info">
+
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-mono text-gray-400">Theme:</span>
+                    <select id="themeSelect" onchange="changeTheme(this.value, true)" class="theme-select-hdr">
+                        <option value="cyber-red">Cyber Red</option>
+                        <option value="neon">Neon Cyber</option>
+                        <option value="ocean">Ocean Ice</option>
+                        <option value="matrix">Matrix Hack</option>
+                        <option value="github-dark">GitHub Dark</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Stats Banner -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                <div class="bg-black/40 border border-white/5 p-3 rounded-lg">
+                    <div class="text-xs font-mono text-gray-400 mb-1">Total Commits</div>
+                    <div class="text-xl font-bold font-mono text-white" id="stat-total">0</div>
+                </div>
+                <div class="bg-black/40 border border-white/5 p-3 rounded-lg">
+                    <div class="text-xs font-mono text-gray-400 mb-1">Current Streak</div>
+                    <div class="text-xl font-bold font-mono text-emerald-400" id="stat-current-streak">0 <span class="text-xs font-normal text-gray-400">days</span></div>
+                </div>
+                <div class="bg-black/40 border border-white/5 p-3 rounded-lg">
+                    <div class="text-xs font-mono text-gray-400 mb-1">Longest Streak</div>
+                    <div class="text-xl font-bold font-mono text-amber-400" id="stat-longest-streak">0 <span class="text-xs font-normal text-gray-400">days</span></div>
+                </div>
+                <div class="bg-black/40 border border-white/5 p-3 rounded-lg">
+                    <div class="text-xs font-mono text-gray-400 mb-1">Active Rate</div>
+                    <div class="text-xl font-bold font-mono text-cyan-400" id="stat-active-rate">0%</div>
+                </div>
+            </div>
+
+            <!-- Heatmap Container -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <span class="text-xs font-mono text-gray-300" id="username-display">@istiaque07</span>
+                <div class="text-xs text-gray-400 bg-black/40 px-3 py-1 rounded border border-white/5 font-mono" id="selected-cell-info">
                     Hover over a square for details
                 </div>
             </div>
 
-            <!-- Calendar Canvas Wrapper -->
-            <div class="overflow-x-auto pb-3">
+            <div class="overflow-x-auto pb-2">
                 <div class="inline-block min-w-max">
-                    <!-- Month Header Labels -->
-                    <div class="months-header" id="months-header"></div>
-
+                    <div class="gh-months-header" id="months-header"></div>
                     <div class="flex gap-2 items-start">
-                        <!-- Day Labels -->
-                        <div class="days-header">
+                        <div class="gh-days-header">
                             <span>Mon</span>
                             <span></span>
                             <span>Wed</span>
@@ -1115,394 +923,319 @@
                             <span></span>
                             <span></span>
                         </div>
-
-                        <!-- 7x53 Contribution Squares Grid -->
-                        <div class="graph-grid" id="contribution-grid"></div>
+                        <div class="gh-grid" id="contribution-grid"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Footer & Legend -->
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/5 text-xs text-sec mt-2">
-                <div class="flex items-center gap-2 text-xs">
-                    <i class="fa-solid fa-chart-simple text-sec"></i>
-                    <span>Activity heatmap visualization</span>
-                </div>
-
+            <!-- Heatmap Legend -->
+            <div class="flex items-center justify-between pt-3 border-t border-white/5 text-xs text-gray-400 font-mono mt-2">
                 <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-chart-simple text-gray-500"></i>
+                    <span>Activity Heatmap</span>
+                </div>
+                <div class="flex items-center gap-1.5">
                     <span>Less</span>
-                    <div class="cell level-0"></div>
-                    <div class="cell level-1"></div>
-                    <div class="cell level-2"></div>
-                    <div class="cell level-3"></div>
-                    <div class="cell level-4"></div>
+                    <div class="gh-cell gh-level-0"></div>
+                    <div class="gh-cell gh-level-1"></div>
+                    <div class="gh-cell gh-level-2"></div>
+                    <div class="gh-cell gh-level-3"></div>
+                    <div class="gh-cell gh-level-4"></div>
                     <span>More</span>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Default Permanent Data Set
-        const DEFAULT_DATA = [{"name":"istiaque07","commits":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,3,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,3,1,0,0,1,1,2,3,1,1,0,1,3,1,3,0,1,0,1,2,2,2,0,1,1,1,1,2,2,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,1,0,0,0,0,0,2,2,1,1,1,1,2,2,2,2,2,2,2,3,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,1,1,1,1,1,1,1,1,2,3,2,0,0,0,0,0,0,0,0,2,1,1,1,1,1,2,2,0,0,2,1,1,2,1,0,0,2,0,0,2,1,0,0,2,1,2,0,1,1,1,2,1,1,0,0,0,0,0,0,0,0,1,2,2,2,2,0,1,3,1,1,1,1,1,1,1,0,0,0,1,2,1,1,0,0,2,1,2,1,1,1,1,1,3,0,0,1,1,1,1,0,3,0,0,0,0,0,0,0,4,2,2,2,2,2,0,0,0,0,0,0,2,1,0,0,0,0,0,2,1,2,2,2,2,2,2,1,2,3,2,2,1,1,0,0,0,0,0,0,0,0,3,3,1,3,2,2,1,1,1,0,4,0,1,1,1,1,0,4,0,1,1,1,1,0,3,0,1,1,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}];
-
-        let currentUsername = "istiaque07";
-        let currentCommits = [...DEFAULT_DATA[0].commits];
-
-        const themes = ["github-dark", "halloween", "neon", "ocean"];
-        let currentThemeIndex = 0;
-        let themeInterval = null;
-
-        function changeTheme(themeName) {
-            document.documentElement.setAttribute('data-theme', themeName);
-            const themeSelect = document.getElementById('themeSelect');
-            if (themeSelect) themeSelect.value = themeName;
-            currentThemeIndex = themes.indexOf(themeName);
-        }
-
-        function startThemeInterval() {
-            if (themeInterval) clearInterval(themeInterval);
-            themeInterval = setInterval(() => {
-                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-                changeTheme(themes[currentThemeIndex]);
-            }, 1000);
-        }
-
-        function loadPreset(type) {
-            if (type === 'default') {
-                currentUsername = "istiaque07";
-                currentCommits = [...DEFAULT_DATA[0].commits];
-            }
-            renderCalendar();
-        }
-
-        function getLevel(count) {
-            if (count === 0) return 0;
-            if (count === 1) return 1;
-            if (count === 2) return 2;
-            if (count === 3) return 3;
-            return 4;
-        }
-
-        function generateMonthHeaders() {
-            const monthsContainer = document.getElementById('months-header');
-            monthsContainer.innerHTML = '';
-            
-            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            
-            let currentMonthIdx = 0;
-            const weekWidth = 14;
-
-            for (let week = 0; week < 53; week++) {
-                const monthSpan = document.createElement('span');
-                monthSpan.style.width = `${weekWidth}px`;
-                
-                if (week % 4 === 0 && currentMonthIdx < 12) {
-                    monthSpan.innerText = monthNames[currentMonthIdx % 12];
-                    currentMonthIdx++;
-                } else {
-                    monthSpan.innerText = '';
-                }
-                monthsContainer.appendChild(monthSpan);
-            }
-        }
-
-        function updateStats() {
-            const total = currentCommits.reduce((a, b) => a + b, 0);
-            
-            let currentStreak = 0;
-            let longestStreak = 0;
-            let activeDays = 0;
-
-            for (let i = currentCommits.length - 1; i >= 0; i--) {
-                if (currentCommits[i] > 0) {
-                    currentStreak++;
-                } else {
-                    break;
-                }
-            }
-
-            let tempStreak = 0;
-            currentCommits.forEach(c => {
-                if (c > 0) {
-                    activeDays++;
-                    tempStreak++;
-                    if (tempStreak > longestStreak) longestStreak = tempStreak;
-                } else {
-                    tempStreak = 0;
-                }
-            });
-
-            const activeRate = ((activeDays / currentCommits.length) * 100).toFixed(1);
-
-            document.getElementById('stat-total').innerText = total.toLocaleString();
-            document.getElementById('stat-current-streak').innerHTML = `${currentStreak} <span class="text-xs font-normal text-sec">days</span>`;
-            document.getElementById('stat-longest-streak').innerHTML = `${longestStreak} <span class="text-xs font-normal text-sec">days</span>`;
-            document.getElementById('stat-active-rate').innerText = `${activeRate}%`;
-            document.getElementById('username-display').innerText = `@${currentUsername}`;
-        }
-
-        function renderCalendar() {
-            const grid = document.getElementById('contribution-grid');
-            grid.innerHTML = '';
-
-            generateMonthHeaders();
-            updateStats();
-
-            currentCommits.forEach((count, index) => {
-                const cell = document.createElement('div');
-                const level = getLevel(count);
-                
-                cell.className = `cell level-${level}`;
-                
-                const dayNum = index + 1;
-                const commitText = count === 1 ? '1 commit' : `${count} commits`;
-
-                cell.addEventListener('mouseenter', () => {
-                    document.getElementById('selected-cell-info').innerText = `Day ${dayNum}: ${commitText}`;
-                });
-
-                cell.addEventListener('mouseleave', () => {
-                    document.getElementById('selected-cell-info').innerText = 'Hover over a square for details';
-                });
-
-                grid.appendChild(cell);
-            });
-        }
-
-        window.onload = function() {
-            renderCalendar();
-            startThemeInterval();
-        };
-    </script>
-</body>
-
     </section>
-    <!-- ABOUT / TERMINAL -->
-    <section>
-        <div class="section-label reveal"><span>About</span></div>
+
+    <!-- TERMINAL SECTION -->
+    <section class="py-6">
         <div class="terminal reveal">
             <div class="terminal-bar">
-                <div class="terminal-dot t-red"></div>
-                <div class="terminal-dot t-gray"></div>
-                <div class="terminal-dot t-light"></div>
-                <span class="terminal-title">istiaque@zoomerz — bash</span>
+                <div class="flex items-center gap-2">
+                    <div class="terminal-dot bg-red-500"></div>
+                    <div class="terminal-dot bg-yellow-500"></div>
+                    <div class="terminal-dot bg-green-500"></div>
+                    <span class="text-xs font-mono text-gray-400 ml-2">istiaque@zoomerz:~ (bash)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="runTerminalCmd('whoami')" class="cmd-btn">whoami</button>
+                    <button onclick="runTerminalCmd('skills')" class="cmd-btn">skills</button>
+                    <button onclick="runTerminalCmd('cat bio.txt')" class="cmd-btn">bio.txt</button>
+                    <button onclick="runTerminalCmd('clear')" class="cmd-btn">clear</button>
+                </div>
             </div>
-            <div class="terminal-body">
-                <div><span class="prompt">istiaque@zoomerz</span>:<span class="hl">~$</span> <span class="cmd">cat bio.txt</span></div>
+            <div class="terminal-body" id="terminalOutput">
+                <div><span style="color: var(--primary);">istiaque@zoomerz</span>:<span class="text-gray-300">~$</span> <span class="text-white">cat bio.txt</span></div>
                 <br>
-                <div id="bioText" class="out">Driven by a deep passion for open-source technology, cybersecurity, and next-generation AI, I am a tech innovator currently pursuing my studies at Notre Dame. As the CEO and Founder of Zo0m3rz, I lead the development of modern digital solutions and cross-platform applications, turning complex technical concepts into real-world tools.
+                <div id="bioText" class="text-justify text-gray-300">Driven by a deep passion for open-source technology, cybersecurity, and next-generation AI, I am a tech innovator currently pursuing my studies at Notre Dame. As the CEO and Founder of Zo0m3rz, I lead the development of modern digital solutions and cross-platform applications, turning complex technical concepts into real-world tools.
 
 My expertise spans advanced terminal environments, Linux/CLI optimization, and building secure, tracker-free infrastructures. From developing custom AI-integrated projects utilizing the Gemini API to configuring advanced cloud systems via GitHub, Cloudflare, and Google Cloud, I thrive on solving intricate software and hardware challenges. Whether I am analyzing system vulnerabilities, optimizing device performance, or architecting secure networks, I approach technology with an elite analytical mindset and an uncompromising commitment to digital efficiency and privacy.</div>
                 <br>
-                <div><span class="prompt">istiaque@zoomerz</span>:<span class="hl">~$</span> <span class="cursor"></span></div>
+                <div><span style="color: var(--primary);">istiaque@zoomerz</span>:<span class="text-gray-300">~$</span> <span class="inline-block w-2 h-4 animate-pulse align-middle" style="background: var(--primary);"></span></div>
             </div>
         </div>
     </section>
 
-    <!-- SLIDESHOW -->
-    <section style="padding: 0 0 64px;">
-        <div class="slide-wrap reveal">
-            <div class="slide active">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" alt="">
-                <div class="slide-overlay"><span class="slide-label">Code Environment</span></div>
-            </div>
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="">
-                <div class="slide-overlay"><span class="slide-label">Development Lab</span></div>
-            </div>
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" alt="">
-                <div class="slide-overlay"><span class="slide-label">System Architecture</span></div>
-            </div>
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-8">
+        <div class="flex items-center gap-3 mb-6">
+            <h2 class="text-lg font-bold tracking-wider uppercase text-white font-mono">Skills &amp; Mastery</h2>
+            <div class="h-px flex-grow bg-gradient-to-r from-white/20 to-transparent"></div>
         </div>
-    </section>
 
-    <!-- SKILLS HEX GRID -->
-    <section id="skills">
-        <div class="section-label reveal"><span>Skills</span></div>
         <div class="hex-grid reveal">
-
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    <div class="hex-name">JavaScript</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:88%"></div></div>
+                    <i class="fa-brands fa-js text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">JavaScript</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:88%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 9 4.5 9 4.5v2h6V8H6.5S4 7.63 4 12s2.5 4 2.5 4H8v-2.5S7.63 11 10 11h5c2 0 3-1.12 3-3V5c0-2-1.5-3-3-3h-3z"/><path d="M12 22c3.87 0 3-2.5 3-2.5v-2H9v-1.5h8.5S20 16.37 20 12s-2.5-4-2.5-4H16v2.5S16.37 13 14 13H9c-2 0-3 1.12-3 3v3c0 2 1.5 3 3 3h3z"/><circle cx="10" cy="5.5" r="0.7" fill="currentColor" stroke="none"/><circle cx="14" cy="18.5" r="0.7" fill="currentColor" stroke="none"/></svg>
-                    <div class="hex-name">Python</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:85%"></div></div>
+                    <i class="fa-brands fa-python text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">Python</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:85%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-                    <div class="hex-name">AI / LLM</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:80%"></div></div>
+                    <i class="fa-solid fa-brain text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">AI / LLM</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:80%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                    <div class="hex-name">Linux / CLI</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:90%"></div></div>
+                    <i class="fa-brands fa-linux text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">Linux / CLI</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:90%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    <div class="hex-name">Cybersecurity</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:75%"></div></div>
+                    <i class="fa-solid fa-shield-halved text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">Cybersecurity</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:75%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-                    <div class="hex-name">Cloud / API</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:78%"></div></div>
+                    <i class="fa-solid fa-cloud text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">Cloud / API</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:78%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    <div class="hex-name">Filmmaking</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:70%"></div></div>
+                    <i class="fa-solid fa-film text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">Filmmaking</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:70%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
-                    <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/></svg>
-                    <div class="hex-name">Hardware</div>
-                    <div class="hex-level"><div class="hex-level-fill" style="width:65%"></div></div>
+                    <i class="fa-solid fa-microchip text-2xl mb-1 text-white"></i>
+                    <div class="font-mono text-xs text-gray-300">Hardware</div>
+                    <div class="w-12 h-1 bg-white/10 rounded mt-2 overflow-hidden">
+                        <div class="h-full" style="width:65%; background: var(--primary);"></div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="section-label reveal"><span>Projects</span></div>
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-3">
+                <h2 class="text-lg font-bold tracking-wider uppercase text-white font-mono">Featured Projects</h2>
+                <div class="h-px w-24 bg-gradient-to-r from-white/20 to-transparent"></div>
+            </div>
 
-        <div class="project-card reveal">
-            <div class="project-tag">Project 01</div>
-            <span class="project-status status-active">Active</span>
-            <div class="project-title">ARIA — Autonomous Research & Intelligent Assistant</div>
-            <div class="project-desc" id="projectARIA">A fully local, headless AI agent system running on Ubuntu Server, controlled via SSH and Telegram. Hybrid LLM brain using Gemini 2.0 Flash + Qwen3 offline fallback, LangGraph orchestration, ChromaDB RAG, and self-hosted SearXNG search.</div>
-            <div class="project-stack">
-                <span class="stack-tag">Python</span>
-                <span class="stack-tag">FastAPI</span>
-                <span class="stack-tag">LangGraph</span>
-                <span class="stack-tag">ChromaDB</span>
-                <span class="stack-tag">Telegram API</span>
-                <span class="stack-tag">Ollama</span>
+            <!-- Filter Buttons -->
+            <div class="flex items-center gap-2 font-mono text-xs">
+                <button onclick="filterProjects('all')" class="project-filter-btn active px-3 py-1 rounded bg-white/10 text-white hover:bg-white/20">All</button>
+                <button onclick="filterProjects('active')" class="project-filter-btn px-3 py-1 rounded bg-black/40 text-gray-400 hover:text-white">Active</button>
+                <button onclick="filterProjects('planned')" class="project-filter-btn px-3 py-1 rounded bg-black/40 text-gray-400 hover:text-white">Planned</button>
             </div>
         </div>
 
-        <div class="project-card reveal">
-            <div class="project-tag">Project 02</div>
-            <span class="project-status status-planned">Planned</span>
-            <div class="project-title">Project Lambda — AI-Native Operating System</div>
-            <div class="project-desc">A custom operating system built from the ground up with AI deeply integrated at the kernel interface level. Privacy-first architecture and intelligent CLI.</div>
-            <div class="project-stack">
-                <span class="stack-tag">C</span>
-                <span class="stack-tag">Assembly</span>
-                <span class="stack-tag">Custom Shell</span>
-                <span class="stack-tag">LLM Core</span>
+        <div class="space-y-4">
+            <div class="project-card reveal project-item active-p">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-mono text-xs text-gray-400 uppercase">Project 01</span>
+                    <span class="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Active</span>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">ARIA — Autonomous Research &amp; Intelligent Assistant</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">A fully local, headless AI agent system running on Ubuntu Server, controlled via SSH and Telegram. Hybrid LLM brain using Gemini 2.0 Flash + Qwen3 offline fallback, LangGraph orchestration, ChromaDB RAG, and self-hosted SearXNG search.</p>
+                <div class="flex flex-wrap gap-2 mt-4 font-mono text-xs">
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Python</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">FastAPI</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">LangGraph</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">ChromaDB</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Ollama</span>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card reveal">
-            <div class="project-tag">Project 03</div>
-            <span class="project-status status-planned">Planned</span>
-            <div class="project-title">Memristor Emulated Circuit Board</div>
-            <div class="project-desc">Single-board computer combining an ESP32 with a memristor analog layer for neuromorphic computing experiments. Designed for Veroboard construction.</div>
-            <div class="project-stack">
-                <span class="stack-tag">ESP32</span>
-                <span class="stack-tag">Analog Electronics</span>
-                <span class="stack-tag">Veroboard</span>
-                <span class="stack-tag">Memristor</span>
+            <div class="project-card reveal project-item planned-p">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-mono text-xs text-gray-400 uppercase">Project 02</span>
+                    <span class="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">Planned</span>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">Project Lambda — AI-Native Operating System</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">A custom operating system built from the ground up with AI deeply integrated at the kernel interface level. Privacy-first architecture and intelligent CLI interface.</p>
+                <div class="flex flex-wrap gap-2 mt-4 font-mono text-xs">
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">C</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Assembly</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Custom Shell</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">LLM Core</span>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card reveal">
-            <div class="project-tag">Project 04</div>
-            <span class="project-status status-planned">Planned</span>
-            <div class="project-title">Mesh Network Encrypted Communication System</div>
-            <div class="project-desc">A decentralized, tracker-free communication infrastructure built on mesh networking principles with end-to-end encryption and no central authority.</div>
-            <div class="project-stack">
-                <span class="stack-tag">Mesh Protocol</span>
-                <span class="stack-tag">E2E Encryption</span>
-                <span class="stack-tag">Decentralized</span>
+            <div class="project-card reveal project-item planned-p">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-mono text-xs text-gray-400 uppercase">Project 03</span>
+                    <span class="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">Planned</span>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">Memristor Emulated Circuit Board</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">Single-board computer combining an ESP32 with a memristor analog layer for neuromorphic computing experiments. Designed for Veroboard construction.</p>
+                <div class="flex flex-wrap gap-2 mt-4 font-mono text-xs">
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">ESP32</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Analog Electronics</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Memristor</span>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card reveal">
-            <div class="project-tag">Project 05</div>
-            <span class="project-status status-active">Active</span>
-            <div class="project-title">GLiTCH — Sci-Fi Short Film</div>
-            <div class="project-desc">A Bangladeshi sci-fi short film with an original screenplay. Currently in pre-production with a real friend group cast in lead roles.</div>
-            <div class="project-stack">
-                <span class="stack-tag">Screenplay</span>
-                <span class="stack-tag">Direction</span>
-                <span class="stack-tag">Sci-Fi</span>
-                <span class="stack-tag">Bangladesh</span>
+            <div class="project-card reveal project-item planned-p">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-mono text-xs text-gray-400 uppercase">Project 04</span>
+                    <span class="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">Planned</span>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">Mesh Network Encrypted Communication System</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">A decentralized, tracker-free communication infrastructure built on mesh networking principles with end-to-end encryption and no central authority.</p>
+                <div class="flex flex-wrap gap-2 mt-4 font-mono text-xs">
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Mesh Protocol</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">E2E Encryption</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Decentralized</span>
+                </div>
             </div>
-        </div>
 
-        <ul id="projectList" style="list-style:none;"></ul>
+            <div class="project-card reveal project-item active-p">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-mono text-xs text-gray-400 uppercase">Project 05</span>
+                    <span class="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Active</span>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">GLiTCH — Sci-Fi Short Film</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">A Bangladeshi sci-fi short film with an original screenplay. Currently in pre-production with a real friend group cast in lead roles.</p>
+                <div class="flex flex-wrap gap-2 mt-4 font-mono text-xs">
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Screenplay</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Direction</span>
+                    <span class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-gray-300">Sci-Fi</span>
+                </div>
+            </div>
+
+            <div id="projectList"></div>
+        </div>
     </section>
 
 </div>
 
-<footer>
-    <div class="footer-text">
-        <p>© 2026 Istiaque Ahmed Toyob — All Rights Reserved</p>
-        <p style="margin-top:4px;">Developed by Istiaque</p>
-    </div>
+<!-- FOOTER -->
+<footer class="mt-12 py-8 border-t border-white/10 text-center font-mono text-xs text-gray-500">
+    <p>© 2026 Istiaque Ahmed Toyob — All Rights Reserved</p>
+    <p class="mt-1">Architected &amp; Built with passion by Istiaque</p>
 </footer>
 
-<!-- EDIT TRIGGER -->
-<button class="edit-trigger" onclick="toggleDrawer()" title="Edit Dashboard">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-</button>
+<!-- TOAST NOTIFICATION -->
+<div id="toast">Message copied!</div>
+
+<!-- FLOATING ACTION BUTTONS -->
+<div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+    <!-- Back to Top -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-11 h-11 rounded-full bg-black/70 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-all shadow-lg" title="Back to Top">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+    </button>
+    <!-- Admin Edit Drawer Trigger -->
+    <button onclick="toggleDrawer()" class="w-11 h-11 rounded-full text-white flex items-center justify-center transition-all shadow-lg" style="background: var(--primary);" title="Dashboard Controls">
+        <i class="fa-solid fa-pen text-sm"></i>
+    </button>
+</div>
 
 <!-- EDIT DRAWER -->
 <div id="drawer">
-    <div class="drawer-title">Edit Dashboard</div>
-    <input type="password" id="passInput" placeholder="Password" class="drawer-input" style="height:44px;">
-    <textarea id="msgInput" placeholder="Ticker message" class="drawer-input" style="height:80px;"></textarea>
-    <textarea id="bioInput" placeholder="Update bio" class="drawer-input" style="height:120px;"></textarea>
-    <textarea id="projectInput" placeholder="Extra projects (comma separated)" class="drawer-input" style="height:100px;"></textarea>
-    <button onclick="saveData()" class="drawer-btn btn-primary">Save Changes</button>
-    <button onclick="toggleDrawer()" class="drawer-btn btn-secondary">Cancel</button>
+    <div class="flex justify-between items-center mb-6 pb-3 border-b border-white/10">
+        <h3 class="font-bold text-white uppercase tracking-wider font-mono text-sm">Dashboard Settings</h3>
+        <button onclick="toggleDrawer()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="space-y-4">
+        <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">Access Password</label>
+            <input type="password" id="passInput" placeholder="Enter password" class="w-full bg-black/50 border border-white/10 rounded p-2.5 text-xs font-mono text-white outline-none focus:border-red-500">
+        </div>
+
+        <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">Live Ticker Message</label>
+            <textarea id="msgInput" placeholder="New live ticker message" class="w-full bg-black/50 border border-white/10 rounded p-2.5 text-xs font-mono text-white outline-none h-20 focus:border-red-500"></textarea>
+        </div>
+
+        <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">Update Terminal Bio</label>
+            <textarea id="bioInput" placeholder="Update bio content" class="w-full bg-black/50 border border-white/10 rounded p-2.5 text-xs font-mono text-white outline-none h-28 focus:border-red-500"></textarea>
+        </div>
+
+        <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">Additional Projects (Comma Separated)</label>
+            <textarea id="projectInput" placeholder="Project Name 1, Project Name 2" class="w-full bg-black/50 border border-white/10 rounded p-2.5 text-xs font-mono text-white outline-none h-20 focus:border-red-500"></textarea>
+        </div>
+
+        <button onclick="saveData()" class="w-full py-2.5 rounded font-mono text-xs font-bold text-white uppercase transition-all shadow" style="background: var(--primary);">Save Changes</button>
+        <button onclick="toggleDrawer()" class="w-full py-2 rounded font-mono text-xs text-gray-400 bg-white/5 hover:bg-white/10 border border-white/10">Cancel</button>
+    </div>
 </div>
 
 <script>
-    // PARTICLES
+    /* ==========================================
+       PARTICLE CANVAS ENGINE
+    ========================================== */
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
     let W, H, particles = [];
 
-    function resizeCanvas() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    function resizeCanvas() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
 
     function createParticle() {
         return {
@@ -1512,19 +1245,26 @@ My expertise spans advanced terminal environments, Linux/CLI optimization, and b
         };
     }
 
-    function initParticles() { particles = []; for (let i = 0; i < 70; i++) particles.push(createParticle()); }
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < 65; i++) particles.push(createParticle());
+    }
 
     function animateParticles() {
         ctx.clearRect(0, 0, W, H);
+        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#E8202A';
+        
         for (let p of particles) {
             p.x += p.vx; p.y += p.vy;
             if (p.x < 0 || p.x > W) p.vx *= -1;
             if (p.y < 0 || p.y > H) p.vy *= -1;
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(232, 32, 42, ${p.alpha})`;
+            ctx.fillStyle = primaryColor;
+            ctx.globalAlpha = p.alpha;
             ctx.fill();
         }
+        
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -1534,74 +1274,507 @@ My expertise spans advanced terminal environments, Linux/CLI optimization, and b
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(232, 32, 42, ${0.06 * (1 - dist/110)})`;
+                    ctx.strokeStyle = primaryColor;
+                    ctx.globalAlpha = 0.06 * (1 - dist/110);
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }
             }
         }
+        ctx.globalAlpha = 1;
         requestAnimationFrame(animateParticles);
     }
 
     window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
     resizeCanvas(); initParticles(); animateParticles();
 
-    // SLIDESHOW
-    let slideIndex = 0;
-    function showSlides() {
-        const slides = document.getElementsByClassName('slide');
-        for (let s of slides) s.classList.remove('active');
-        slideIndex = (slideIndex % slides.length) + 1;
-        slides[slideIndex - 1].classList.add('active');
-        setTimeout(showSlides, 3500);
-    }
-    showSlides();
+    /* ==========================================
+       THEME MANAGEMENT SYSTEM
+    ========================================== */
+    const themesList = ['cyber-red', 'neon', 'ocean', 'matrix', 'github-dark'];
+    let autoThemeActive = false;
+    let autoThemeInterval = null;
+    let currentThemeIdx = 0;
 
-    // TICKER
+    function changeTheme(themeName, manualUserAction = false) {
+        if (!themesList.includes(themeName)) return;
+        
+        document.documentElement.setAttribute('data-theme', themeName);
+        
+        // Sync select elements
+        const hdrSelect = document.getElementById('headerThemeSelect');
+        const cardSelect = document.getElementById('themeSelect');
+        if (hdrSelect) hdrSelect.value = themeName;
+        if (cardSelect) cardSelect.value = themeName;
+
+        if (manualUserAction) {
+            localStorage.setItem('userTheme', themeName);
+            if (autoThemeActive) stopAutoTheme();
+        }
+    }
+
+    function toggleAutoTheme() {
+        if (autoThemeActive) {
+            stopAutoTheme();
+            showToast("Auto Theme Switched OFF");
+        } else {
+            startAutoTheme();
+            showToast("Auto Theme Switched ON");
+        }
+    }
+
+    function startAutoTheme() {
+        autoThemeActive = true;
+        const status = document.getElementById('autoThemeStatus');
+        const icon = document.getElementById('autoThemeIcon');
+        if (status) status.innerText = "Auto Theme: ON";
+        if (icon) icon.classList.add('animate-spin');
+        
+        if (autoThemeInterval) clearInterval(autoThemeInterval);
+        autoThemeInterval = setInterval(cycleNextTheme, 3000);
+    }
+
+    function stopAutoTheme() {
+        autoThemeActive = false;
+        if (autoThemeInterval) clearInterval(autoThemeInterval);
+        const status = document.getElementById('autoThemeStatus');
+        const icon = document.getElementById('autoThemeIcon');
+        if (status) status.innerText = "Auto Theme: OFF";
+        if (icon) icon.classList.remove('animate-spin');
+    }
+
+    function cycleNextTheme() {
+        currentThemeIdx = (currentThemeIdx + 1) % themesList.length;
+        changeTheme(themesList[currentThemeIdx], false);
+    }
+
+    /* ==========================================
+       SCI-FI LOADING SCREEN & WEB AUDIO ENGINE
+    ========================================== */
+    const TOTAL_BLOCKS = 24;
+    let loaderProgress = 0;
+    let loaderRunning = false;
+    let audioEnabled = true;
+    let isDedsecOverride = false;
+    let loaderProgressInterval = null;
+    let audioCtx = null;
+
+    const blockContainer = document.getElementById('block-container');
+    const percentText = document.getElementById('percent-text');
+    const statusBadge = document.getElementById('status-badge');
+    const loaderConsole = document.getElementById('loader-console');
+    const clockDisplay = document.getElementById('clock-display');
+    const soundIcon = document.getElementById('sound-icon');
+    const soundText = document.getElementById('sound-text');
+    const speedIndicator = document.getElementById('speed-indicator');
+    const loaderOverlay = document.getElementById('loader-overlay');
+    const startOverlay = document.getElementById('start-overlay');
+
+    function initializeBlocks() {
+        if (!blockContainer) return;
+        blockContainer.innerHTML = '';
+        for (let i = 0; i < TOTAL_BLOCKS; i++) {
+            const block = document.createElement('div');
+            block.className = 'progress-block h-7 rounded-sm';
+            block.dataset.index = i;
+            blockContainer.appendChild(block);
+        }
+    }
+
+    // Real-time HUD Clock
+    setInterval(() => {
+        if (!clockDisplay) return;
+        const now = new Date();
+        clockDisplay.innerText = now.toTimeString().split(' ')[0] + '.' + Math.floor(now.getMilliseconds() / 100);
+    }, 100);
+
+    function initAudio() {
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playCyberSound(freq = 440, type = 'sine', duration = 0.1, vol = 0.08) {
+        if (!audioEnabled || !audioCtx) return;
+        try {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch(e) {}
+    }
+
+    function addLoaderLog(msg) {
+        if (!loaderConsole) return;
+        const entry = document.createElement('div');
+        const time = new Date().toISOString().split('T')[1].slice(0, 8);
+        entry.innerHTML = `<span class="text-gray-500">[${time}]</span> ${msg}`;
+        loaderConsole.appendChild(entry);
+        loaderConsole.scrollTop = loaderConsole.scrollHeight;
+    }
+
+    function triggerGlitchAndSound() {
+        percentText.classList.add('glitch-active');
+        playCyberSound(400 + Math.random() * 800, 'sawtooth', 0.15, 0.1);
+        setTimeout(() => percentText.classList.remove('glitch-active'), 300);
+    }
+
+    function triggerCompletionGlitch() {
+        document.body.classList.add('heavy-glitch');
+        percentText.classList.add('glitch-active');
+
+        let count = 0;
+        const glitchSoundInterval = setInterval(() => {
+            playCyberSound(200 + Math.random() * 1200, 'sawtooth', 0.05, 0.1);
+            count++;
+            if (count > 8) clearInterval(glitchSoundInterval);
+        }, 50);
+
+        setTimeout(() => {
+            document.body.classList.remove('heavy-glitch');
+            percentText.classList.remove('glitch-active');
+            playCyberSound(1200, 'square', 0.25, 0.15);
+        }, 800);
+    }
+
+    function updateProgressUI() {
+        const activeBlocksCount = Math.floor((loaderProgress / 100) * TOTAL_BLOCKS);
+        const blocks = blockContainer.querySelectorAll('.progress-block');
+
+        blocks.forEach((block, idx) => {
+            if (idx < activeBlocksCount) {
+                if (!block.classList.contains('active')) {
+                    block.classList.add('active');
+                    playCyberSound(300 + idx * 35, 'square', 0.04, 0.04);
+                }
+            } else {
+                block.classList.remove('active');
+            }
+        });
+
+        percentText.innerHTML = `${Math.floor(loaderProgress)}<span class="text-2xl">%</span>`;
+        if (speedIndicator) speedIndicator.innerText = `TRANSFER: ${(120 + Math.random() * 90).toFixed(1)} MB/S`;
+    }
+
+    function startLoadingSequence() {
+        if (loaderRunning) return;
+        loaderRunning = true;
+        loaderProgress = 0;
+        updateProgressUI();
+        addLoaderLog(">>> INITIATING SYSTEM BREACH HANDSHAKE...");
+
+        const logs = [
+            "Connecting to Ubuntu Node #08...",
+            "Injecting AI Agent System Keys...",
+            "Decrypting Portfolio Analytics Packets...",
+            "Validating GitHub Heatmap Calendar...",
+            "Bypassing Security Encryption Layer...",
+            "Overriding Sector Access Controls...",
+            "Deploying ISTIAQUE_AHMED_TOYOB Core..."
+        ];
+
+        let logIndex = 0;
+
+        loaderProgressInterval = setInterval(() => {
+            const increment = Math.random() * 4 + 1.2;
+            loaderProgress += increment;
+
+            if (Math.random() < 0.08) triggerGlitchAndSound();
+
+            if (Math.random() < 0.18 && logIndex < logs.length) {
+                addLoaderLog(logs[logIndex]);
+                logIndex = (logIndex + 1) % logs.length;
+            }
+
+            if (loaderProgress >= 100) {
+                loaderProgress = 100;
+                updateProgressUI();
+                clearInterval(loaderProgressInterval);
+                loaderRunning = false;
+
+                triggerCompletionGlitch();
+
+                statusBadge.innerText = "ACCESS GRANTED // PORTFOLIO READY";
+                statusBadge.className = "text-xs md:text-sm font-bold text-emerald-400 tracking-wider animate-pulse";
+                addLoaderLog("CRITICAL BREACH SUCCESSFUL. SYSTEM ACCESS GRANTED.");
+
+                setTimeout(() => {
+                    skipLoading();
+                }, 1000);
+            } else {
+                updateProgressUI();
+            }
+        }, 110);
+    }
+
+    function restartBreach() {
+        clearInterval(loaderProgressInterval);
+        loaderRunning = false;
+        loaderProgress = 0;
+        statusBadge.innerText = "DECRYPTING PORTFOLIO MODULES...";
+        statusBadge.className = "text-xs md:text-sm font-bold text-gray-200 tracking-wider";
+        loaderConsole.innerHTML = '';
+        addLoaderLog("[SYSTEM] Breach restart requested.");
+        startLoadingSequence();
+    }
+
+    function initializeSystem() {
+        initAudio();
+        playCyberSound(800, 'square', 0.2, 0.15);
+        if (startOverlay) {
+            startOverlay.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                startOverlay.style.display = 'none';
+                startLoadingSequence();
+            }, 400);
+        }
+    }
+
+    function toggleDedsecOverride() {
+        initAudio();
+        isDedsecOverride = !isDedsecOverride;
+        document.body.classList.toggle('dedsec-override-mode', isDedsecOverride);
+        addLoaderLog(isDedsecOverride ? "[OVERRIDE] DedSec Red Breach Activated!" : "[MODE] Standard Theme HUD Restored.");
+        triggerGlitchAndSound();
+    }
+
+    function toggleSoundSFX() {
+        audioEnabled = !audioEnabled;
+        if (soundText) soundText.innerText = audioEnabled ? "SFX: ON" : "SFX: OFF";
+        if (soundIcon) soundIcon.className = audioEnabled ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark";
+    }
+
+    function skipLoading() {
+        initAudio();
+        playCyberSound(900, 'sine', 0.2, 0.1);
+        if (loaderOverlay) {
+            loaderOverlay.style.opacity = '0';
+            loaderOverlay.style.pointerEvents = 'none';
+            setTimeout(() => loaderOverlay.style.display = 'none', 500);
+        }
+    }
+
+    function reopenLoaderOverlay() {
+        if (!loaderOverlay) return;
+        loaderOverlay.style.display = 'flex';
+        setTimeout(() => {
+            loaderOverlay.style.opacity = '1';
+            loaderOverlay.style.pointerEvents = 'auto';
+        }, 10);
+        restartBreach();
+    }
+
+    /* Key listener for start overlay or glitching */
+    window.addEventListener('keydown', (e) => {
+        if (startOverlay && startOverlay.style.display !== 'none') {
+            initializeSystem();
+        }
+    });
+
+    /* ==========================================
+       GITHUB HEATMAP CALENDAR LOGIC
+    ========================================== */
+    const DEFAULT_DATA = [{"name":"istiaque07","commits":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,3,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,3,1,0,0,1,1,2,3,1,1,0,1,3,1,3,0,1,0,1,2,2,2,0,1,1,1,1,2,2,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,1,0,0,0,0,0,2,2,1,1,1,1,2,2,2,2,2,2,2,3,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,1,1,1,1,1,1,1,1,2,3,2,0,0,0,0,0,0,0,0,2,1,1,1,1,1,2,2,0,0,2,1,1,2,1,0,0,2,0,0,2,1,0,0,2,1,2,0,1,1,1,2,1,1,0,0,0,0,0,0,0,0,1,2,2,2,2,0,1,3,1,1,1,1,1,1,1,0,0,0,1,2,1,1,0,0,2,1,2,1,1,1,1,1,3,0,0,1,1,1,1,0,3,0,0,0,0,0,0,0,4,2,2,2,2,2,0,0,0,0,0,0,2,1,0,0,0,0,0,2,1,2,2,2,2,2,2,1,2,3,2,2,1,1,0,0,0,0,0,0,0,0,3,3,1,3,2,2,1,1,1,0,4,0,1,1,1,1,0,4,0,1,1,1,1,0,3,0,1,1,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}];
+
+    let currentUsername = "istiaque07";
+    let currentCommits = [...DEFAULT_DATA[0].commits];
+
+    function getLevel(count) {
+        if (count === 0) return 0;
+        if (count === 1) return 1;
+        if (count === 2) return 2;
+        if (count === 3) return 3;
+        return 4;
+    }
+
+    function generateMonthHeaders() {
+        const monthsContainer = document.getElementById('months-header');
+        if (!monthsContainer) return;
+        monthsContainer.innerHTML = '';
+        
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let currentMonthIdx = 0;
+        const weekWidth = 14;
+
+        for (let week = 0; week < 53; week++) {
+            const monthSpan = document.createElement('span');
+            monthSpan.style.width = `${weekWidth}px`;
+            
+            if (week % 4 === 0 && currentMonthIdx < 12) {
+                monthSpan.innerText = monthNames[currentMonthIdx % 12];
+                currentMonthIdx++;
+            } else {
+                monthSpan.innerText = '';
+            }
+            monthsContainer.appendChild(monthSpan);
+        }
+    }
+
+    function updateStats() {
+        const total = currentCommits.reduce((a, b) => a + b, 0);
+        let currentStreak = 0;
+        let longestStreak = 0;
+        let activeDays = 0;
+
+        for (let i = currentCommits.length - 1; i >= 0; i--) {
+            if (currentCommits[i] > 0) currentStreak++;
+            else break;
+        }
+
+        let tempStreak = 0;
+        currentCommits.forEach(c => {
+            if (c > 0) {
+                activeDays++;
+                tempStreak++;
+                if (tempStreak > longestStreak) longestStreak = tempStreak;
+            } else tempStreak = 0;
+        });
+
+        const activeRate = ((activeDays / currentCommits.length) * 100).toFixed(1);
+
+        document.getElementById('stat-total').innerText = total.toLocaleString();
+        document.getElementById('stat-current-streak').innerHTML = `${currentStreak} <span class="text-xs font-normal text-gray-400">days</span>`;
+        document.getElementById('stat-longest-streak').innerHTML = `${longestStreak} <span class="text-xs font-normal text-gray-400">days</span>`;
+        document.getElementById('stat-active-rate').innerText = `${activeRate}%`;
+        document.getElementById('username-display').innerText = `@${currentUsername}`;
+    }
+
+    function renderCalendar() {
+        const grid = document.getElementById('contribution-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        generateMonthHeaders();
+        updateStats();
+
+        currentCommits.forEach((count, index) => {
+            const cell = document.createElement('div');
+            const level = getLevel(count);
+            
+            cell.className = `gh-cell gh-level-${level}`;
+            const dayNum = index + 1;
+            const commitText = count === 1 ? '1 commit' : `${count} commits`;
+
+            cell.addEventListener('mouseenter', () => {
+                document.getElementById('selected-cell-info').innerText = `Day ${dayNum}: ${commitText}`;
+            });
+
+            cell.addEventListener('mouseleave', () => {
+                document.getElementById('selected-cell-info').innerText = 'Hover over a square for details';
+            });
+
+            grid.appendChild(cell);
+        });
+    }
+
+    /* ==========================================
+       UTILITY & HELPER FUNCTIONS
+    ========================================== */
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    function copyToClipboard(text, successMessage) {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast(successMessage);
+    }
+
+    function toggleMobileNav() {
+        const menu = document.getElementById('mobileNavMenu');
+        menu.classList.toggle('hidden');
+    }
+
+    function runTerminalCmd(cmd) {
+        const terminalBody = document.getElementById('terminalOutput');
+        let output = '';
+
+        if (cmd === 'whoami') {
+            output = `istiaque_ahmed_toyob [Founder & CEO @ Zo0m3rz]\nLocation: Dhaka / Mymensingh, Bangladesh\nRole: AI Systems & Security Engineer`;
+        } else if (cmd === 'skills') {
+            output = `Core Competencies:\n- AI & LLM Systems (Gemini, LangGraph, Ollama)\n- Linux Administration & Bash CLI\n- Cybersecurity & E2E Encryption Protocols\n- Web Engineering (JavaScript, Python, FastAPI)`;
+        } else if (cmd === 'clear') {
+            terminalBody.innerHTML = `<div><span style="color: var(--primary);">istiaque@zoomerz</span>:<span class="text-gray-300">~$</span> <span class="inline-block w-2 h-4 animate-pulse align-middle" style="background: var(--primary);"></span></div>`;
+            return;
+        } else if (cmd === 'cat bio.txt') {
+            output = document.getElementById('bioText').innerText;
+        }
+
+        const newBlock = document.createElement('div');
+        newBlock.className = 'mt-3 pt-3 border-t border-white/5';
+        newBlock.innerHTML = `
+            <div><span style="color: var(--primary);">istiaque@zoomerz</span>:<span class="text-gray-300">~$</span> <span class="text-white">${cmd}</span></div>
+            <div class="mt-1 text-gray-300 text-justify">${output}</div>
+        `;
+        
+        terminalBody.insertBefore(newBlock, terminalBody.lastElementChild);
+    }
+
+    function filterProjects(type) {
+        const items = document.querySelectorAll('.project-item');
+        const btns = document.querySelectorAll('.project-filter-btn');
+
+        btns.forEach(b => {
+            b.classList.remove('active', 'bg-white/10', 'text-white');
+            b.classList.add('bg-black/40', 'text-gray-400');
+        });
+
+        event.target.classList.add('active', 'bg-white/10', 'text-white');
+
+        items.forEach(item => {
+            if (type === 'all') {
+                item.style.display = 'block';
+            } else if (type === 'active' && item.classList.contains('active-p')) {
+                item.style.display = 'block';
+            } else if (type === 'planned' && item.classList.contains('planned-p')) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
     const tickers = [
         "Welcome to my portfolio — join any of my projects and contribute.",
         "ARIA system is currently in active development on Ubuntu Server.",
-        "Open to freelance projects — contact via the links above.",
+        "Open to freelance projects & AI consulting — contact via links above.",
         "GLiTCH — Bangladeshi sci-fi short film — pre-production underway.",
-        "Building the future, one terminal command at a time."
+        "Building privacy-first, decentralized digital systems."
     ];
     let tickerIdx = 0;
+
     function rotateTicker() {
         const el = document.getElementById('tickerText');
+        if (!el) return;
         el.style.opacity = 0;
         setTimeout(() => {
             tickerIdx = (tickerIdx + 1) % tickers.length;
             el.textContent = tickers[tickerIdx];
             el.style.transition = 'opacity 0.5s';
             el.style.opacity = 1;
-        }, 400);
-    }
-    document.getElementById('tickerText').textContent = tickers[0];
-    setInterval(rotateTicker, 4000);
-
-    // LOCAL STORAGE
-    window.onload = () => {
-        if (localStorage.getItem('myMsg')) tickers.unshift(localStorage.getItem('myMsg'));
-        if (localStorage.getItem('myBio')) document.getElementById('bioText').innerText = localStorage.getItem('myBio');
-        if (localStorage.getItem('myProjects')) updateProjectList(localStorage.getItem('myProjects').split(','));
-    };
-
-    function updateProjectList(projects) {
-        const list = document.getElementById('projectList');
-        list.innerHTML = '';
-        projects.forEach(p => {
-            if (!p.trim()) return;
-            list.innerHTML += `
-                <div class="project-card reveal" style="margin-top:14px;">
-                    <div class="project-tag">Custom Entry</div>
-                    <span class="project-status status-active">Added</span>
-                    <div class="project-title">${p.trim()}</div>
-                </div>`;
-        });
+        }, 300);
     }
 
-    // DRAWER
-    function toggleDrawer() { document.getElementById('drawer').classList.toggle('open'); }
+    function toggleDrawer() { 
+        document.getElementById('drawer').classList.toggle('open'); 
+    }
 
     function saveData() {
         if (document.getElementById('passInput').value === '180012345') {
@@ -1610,21 +1783,48 @@ My expertise spans advanced terminal environments, Linux/CLI optimization, and b
             const proj = document.getElementById('projectInput').value;
             if (bio) { localStorage.setItem('myBio', bio); document.getElementById('bioText').innerText = bio; }
             if (msg) { localStorage.setItem('myMsg', msg); tickers[0] = msg; }
-            if (proj) { localStorage.setItem('myProjects', proj); updateProjectList(proj.split(',')); }
+            if (proj) { localStorage.setItem('myProjects', proj); }
             toggleDrawer();
+            showToast("Changes saved successfully!");
             document.getElementById('passInput').value = '';
         } else {
+            showToast("Invalid Admin Password");
             document.getElementById('passInput').style.borderColor = '#E8202A';
-            setTimeout(() => document.getElementById('passInput').style.borderColor = '', 1000);
+            setTimeout(() => document.getElementById('passInput').style.borderColor = '', 1200);
         }
     }
 
-    // SCROLL REVEAL
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => observer.observe(el));
+    /* ==========================================
+       INITIALIZATION ON PAGE LOAD
+    ========================================== */
+    window.onload = function() {
+        initializeBlocks();
+        renderCalendar();
+
+        // Ticker initialization
+        const tickerEl = document.getElementById('tickerText');
+        if (tickerEl) tickerEl.textContent = tickers[0];
+        setInterval(rotateTicker, 4200);
+
+        if (localStorage.getItem('myMsg')) tickers.unshift(localStorage.getItem('myMsg'));
+        if (localStorage.getItem('myBio')) document.getElementById('bioText').innerText = localStorage.getItem('myBio');
+
+        // Saved theme check
+        const savedTheme = localStorage.getItem('userTheme');
+        if (savedTheme) {
+            changeTheme(savedTheme, false);
+        }
+
+        // Auto Theme activated by default on page load
+        startAutoTheme();
+
+        // Scroll Reveal Observer
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        revealEls.forEach(el => observer.observe(el));
+    };
 </script>
 </body>
 </html>
