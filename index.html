@@ -107,6 +107,47 @@
             --border-color: rgba(255, 0, 85, 0.5) !important;
         }
 
+        /* Dynamic Layout Adaptations for PC vs Mobile */
+        @media (max-width: 640px) {
+            :root {
+                --gh-cell-size: 8.5px;
+                --gh-cell-gap: 2px;
+            }
+            .hud-card {
+                padding: 1rem !important;
+            }
+            .avatar-frame, .avatar-hex {
+                width: 110px !important;
+                height: 110px !important;
+            }
+            .avatar-ring {
+                inset: -3px !important;
+            }
+            .terminal-body {
+                font-size: 0.72rem !important;
+                padding: 12px !important;
+            }
+            .hex-card {
+                width: 115px !important;
+            }
+            .hex-bg {
+                width: 115px !important;
+                height: 130px !important;
+            }
+            .hex-outer {
+                width: 121px !important;
+                height: 136px !important;
+            }
+            .gh-months-header {
+                font-size: 8.5px !important;
+                margin-left: 20px !important;
+            }
+            .gh-days-header {
+                font-size: 8px !important;
+                width: 18px !important;
+            }
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -659,18 +700,18 @@
                     <span id="status-badge" class="text-xs md:text-sm font-bold tracking-wider text-gray-200">DECRYPTING PORTFOLIO MODULES...</span>
                 </div>
                 <div class="text-right">
-                    <span id="percent-text" class="font-orbitron text-3xl md:text-5xl font-extrabold tracking-tight" style="color: var(--primary); text-shadow: 0 0 15px var(--primary-glow);">
-                        0<span class="text-2xl">%</span>
+                    <span id="percent-text" class="font-orbitron text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight" style="color: var(--primary); text-shadow: 0 0 15px var(--primary-glow);">
+                        0<span class="text-xl sm:text-2xl">%</span>
                     </span>
                 </div>
             </div>
 
             <!-- Segmented Block Loading Bar Container (24 Blocks) -->
-            <div id="block-container" class="grid grid-cols-12 md:grid-cols-24 gap-1 p-2 bg-black/60 border border-white/10 rounded shadow-inner my-4 h-11 items-center">
+            <div id="block-container" class="grid grid-cols-12 sm:grid-cols-24 gap-1 p-1.5 sm:p-2 bg-black/60 border border-white/10 rounded shadow-inner my-4 h-9 sm:h-11 items-center overflow-hidden">
                 <!-- Javascript dynamically populates 24 interactive blocks here -->
             </div>
 
-            <div class="flex justify-between text-[10px] font-mono text-gray-400 tracking-widest uppercase">
+            <div class="flex justify-between text-[9px] sm:text-[10px] font-mono text-gray-400 tracking-widest uppercase">
                 <span>SECTOR: 0x89F</span>
                 <span id="speed-indicator">TRANSFER: 142.8 MB/S</span>
                 <span>NODES: 24/24</span>
@@ -683,32 +724,32 @@
                 <span class="flex items-center gap-2" style="color: var(--primary);"><i class="fa-solid fa-terminal text-xs"></i> TERMINAL_DECRYPT_LOG</span>
                 <span class="text-gray-500">v2.4.0</span>
             </div>
-            <div id="loader-console" class="bg-black/80 border border-white/10 p-3 h-28 overflow-y-auto text-xs font-mono text-gray-300 space-y-1 rounded-b">
+            <div id="loader-console" class="bg-black/80 border border-white/10 p-3 h-24 sm:h-28 overflow-y-auto text-xs font-mono text-gray-300 space-y-1 rounded-b">
                 <div class="text-gray-500">[SYSTEM] Awaiting initialization sequence...</div>
             </div>
         </section>
 
         <!-- Interactive Control Bar -->
-        <footer class="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-2 items-center justify-between font-mono">
-            <div class="flex flex-wrap gap-2">
-                <button id="btn-restart" onclick="restartBreach()" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-xs font-semibold rounded tracking-wider uppercase transition">
+        <footer class="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row gap-3 items-center justify-between font-mono">
+            <div class="flex flex-wrap justify-center sm:justify-start gap-1.5 sm:gap-2 w-full sm:w-auto">
+                <button id="btn-restart" onclick="restartBreach()" class="px-2.5 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-[11px] sm:text-xs font-semibold rounded tracking-wider uppercase transition">
                     <i class="fa-solid fa-rotate-right mr-1" style="color: var(--primary);"></i> RESTART
                 </button>
-                <button id="btn-glitch" onclick="triggerGlitchAndSound()" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-xs font-semibold rounded tracking-wider uppercase transition">
+                <button id="btn-glitch" onclick="triggerGlitchAndSound()" class="px-2.5 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 text-[11px] sm:text-xs font-semibold rounded tracking-wider uppercase transition">
                     <i class="fa-solid fa-bolt mr-1" style="color: var(--primary);"></i> GLITCH
                 </button>
-                <button id="btn-dedsec" onclick="toggleDedsecOverride()" class="px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/40 text-red-400 text-xs font-semibold rounded tracking-wider uppercase transition">
+                <button id="btn-dedsec" onclick="toggleDedsecOverride()" class="px-2.5 py-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/40 text-red-400 text-[11px] sm:text-xs font-semibold rounded tracking-wider uppercase transition">
                     <i class="fa-solid fa-skull mr-1"></i> OVERRIDE
                 </button>
             </div>
             
-            <div class="flex items-center gap-2">
-                <button id="btn-sound" onclick="toggleSoundSFX()" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 text-gray-300 text-xs rounded border border-white/10 flex items-center gap-2">
+            <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
+                <button id="btn-sound" onclick="toggleSoundSFX()" class="px-2.5 py-1.5 bg-white/5 hover:bg-white/10 text-gray-300 text-[11px] sm:text-xs rounded border border-white/10 flex items-center gap-1.5">
                     <i class="fa-solid fa-volume-high" id="sound-icon"></i> <span id="sound-text">SFX: ON</span>
                 </button>
 
-                <button onclick="skipLoading()" class="px-3 py-1.5 rounded text-xs font-bold text-white uppercase transition-all shadow" style="background: var(--primary);">
-                    ENTER PORTFOLIO <i class="fa-solid fa-arrow-right ml-1"></i>
+                <button onclick="skipLoading()" class="px-3 py-1.5 rounded text-[11px] sm:text-xs font-bold text-white uppercase transition-all shadow flex items-center gap-1" style="background: var(--primary);">
+                    ENTER PORTFOLIO <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
         </footer>
@@ -950,14 +991,14 @@
     <!-- TERMINAL SECTION -->
     <section class="py-6">
         <div class="terminal reveal">
-            <div class="terminal-bar">
+            <div class="terminal-bar flex-wrap gap-2">
                 <div class="flex items-center gap-2">
                     <div class="terminal-dot bg-red-500"></div>
                     <div class="terminal-dot bg-yellow-500"></div>
                     <div class="terminal-dot bg-green-500"></div>
-                    <span class="text-xs font-mono text-gray-400 ml-2">istiaque@zoomerz:~ (bash)</span>
+                    <span class="text-xs font-mono text-gray-400 ml-1 sm:ml-2 truncate max-w-[140px] sm:max-w-none">istiaque@zoomerz:~</span>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                     <button onclick="runTerminalCmd('whoami')" class="cmd-btn">whoami</button>
                     <button onclick="runTerminalCmd('skills')" class="cmd-btn">skills</button>
                     <button onclick="runTerminalCmd('cat bio.txt')" class="cmd-btn">bio.txt</button>
@@ -983,7 +1024,7 @@ My expertise spans advanced terminal environments, Linux/CLI optimization, and b
             <div class="h-px flex-grow bg-gradient-to-r from-white/20 to-transparent"></div>
         </div>
 
-        <div class="hex-grid reveal">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-items-center max-w-3xl mx-auto reveal">
             <div class="hex-card">
                 <div class="hex-outer"></div>
                 <div class="hex-bg">
