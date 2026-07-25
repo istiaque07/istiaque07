@@ -1,6 +1,6 @@
 # 💫 About Me:
 I am vibe coder developer cyber and ai enthusiast. Founder and CEO of zoomerz.
-Heres the link to my portfolio site :https://istiaquelll.github.io/portfolio/
+Heres the link to my portfolio site :https://istiaque07.github.io/portfolio/
 
 
 ## 🌐 Socials:
