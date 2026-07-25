@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="8dXpGngdpoDMKGNNMTGyK3mXviBJS9_7W26Ks10ycTI" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Istiaque Ahmed Toyob — Cyber Portfolio & System HUD</title>
+    <title>Istiaque Ahmed Toyob and his portfolio</title>
     
     <!-- External Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -659,7 +659,7 @@
 
             <button id="btn-initialize" onclick="initializeSystem()" class="w-full py-3.5 px-6 font-orbitron font-bold text-sm tracking-widest uppercase rounded border transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 text-white" style="background: rgba(255, 255, 255, 0.05); border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow);">
                 <i class="fa-solid fa-power-off text-base" style="color: var(--primary);"></i>
-                <span>INITIALIZE BREACH</span>
+                <span>ENTER</span>
             </button>
             <p class="mt-4 text-[10px] font-mono text-gray-500 uppercase tracking-widest">Click button or press any key to enter</p>
         </div>
@@ -748,9 +748,7 @@
                     <i class="fa-solid fa-volume-high" id="sound-icon"></i> <span id="sound-text">SFX: ON</span>
                 </button>
 
-                <button onclick="skipLoading()" class="px-3 py-1.5 rounded text-[11px] sm:text-xs font-bold text-white uppercase transition-all shadow flex items-center gap-1" style="background: var(--primary);">
-                    ENTER PORTFOLIO <i class="fa-solid fa-arrow-right"></i>
-                </button>
+                
             </div>
         </footer>
     </main>
@@ -760,7 +758,7 @@
 <nav>
     <div class="max-w-6xl mx-auto flex items-center justify-between">
         <a href="#" class="font-mono text-sm font-bold tracking-wider flex items-center gap-2" style="color: var(--primary);">
-            <i class="fa-solid fa-terminal text-xs"></i> IAT['-']
+            <i class="fa-solid fa-terminal text-xs"></i>IAT
         </a>
 
         <!-- Desktop Links -->
@@ -774,10 +772,7 @@
         <!-- Theme Controls -->
         <div class="flex items-center gap-3">
             <!-- Re-trigger Loading HUD -->
-            <button onclick="reopenLoaderOverlay()" class="px-2.5 py-1 text-xs font-mono rounded border border-white/10 bg-black/40 text-gray-300 hover:text-white flex items-center gap-1.5 transition-all" title="View System Breach HUD">
-                <i class="fa-solid fa-terminal text-xs text-amber-400"></i>
-                <span class="hidden sm:inline">System HUD</span>
-            </button>
+         
 
             <!-- Auto Theme Toggle Button -->
             <button id="autoThemeBtn" onclick="toggleAutoTheme()" class="px-2.5 py-1 text-xs font-mono rounded border border-white/10 bg-black/40 text-gray-300 hover:text-white flex items-center gap-1.5 transition-all" title="Toggle Automatic Theme Switching">
@@ -786,13 +781,7 @@
             </button>
 
             <!-- Theme Selector Dropdown -->
-            <select id="headerThemeSelect" onchange="changeTheme(this.value, true)" class="theme-select-hdr">
-                <option value="cyber-red">🔴 Cyber Red</option>
-                <option value="neon">🟣 Neon Cyber</option>
-                <option value="ocean">🔵 Ocean Ice</option>
-                <option value="matrix">🟢 Matrix Hack</option>
-                <option value="github-dark">⬛ GitHub Dark</option>
-            </select>
+       
 
             <!-- Mobile Menu Hamburger -->
             <button onclick="toggleMobileNav()" class="md:hidden text-gray-300 hover:text-white text-lg px-2 py-1">
@@ -973,7 +962,7 @@
             <div class="flex items-center justify-between pt-3 border-t border-white/5 text-xs text-gray-400 font-mono mt-2">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-chart-simple text-gray-500"></i>
-                    <span>Activity Heatmap</span>
+                    <span>HOW'S GOING</span>
                 </div>
                 <div class="flex items-center gap-1.5">
                     <span>Less</span>
