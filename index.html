@@ -1063,14 +1063,6 @@
                 <select id="presetSelect" onchange="loadPreset(this.value)" class="text-xs px-3 py-2 rounded-md font-medium cursor-pointer focus:outline-none custom-card text-sec hover:text-white">
                     <option value="default">Preset: Default (istiaque07)</option>
                 </select>
-
-                <button onclick="toggleAutoTheme()" id="autoThemeBtn" class="text-xs px-3 py-2 rounded-md font-medium transition flex items-center gap-1.5 custom-card text-emerald-400 border-emerald-500/50">
-                    <i class="fa-solid fa-sync fa-spin"></i> Auto Theme (1s)
-                </button>
-
-                <button onclick="openModal()" class="text-xs px-3 py-2 rounded-md font-medium transition flex items-center gap-1.5 custom-card hover:border-emerald-500">
-                    <i class="fa-solid fa-code"></i> Edit Data
-                </button>
             </div>
         </header>
 
@@ -1133,8 +1125,8 @@
             <!-- Footer & Legend -->
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/5 text-xs text-sec mt-2">
                 <div class="flex items-center gap-2 text-xs">
-                    <i class="fa-solid fa-circle-info text-sec"></i>
-                    <span>Click any cell to edit commit count</span>
+                    <i class="fa-solid fa-chart-simple text-sec"></i>
+                    <span>Activity heatmap visualization</span>
                 </div>
 
                 <div class="flex items-center gap-2">
@@ -1150,35 +1142,8 @@
         </div>
     </div>
 
-    <div id="jsonModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="custom-card max-w-2xl w-full rounded-2xl p-6 shadow-2xl border flex flex-col max-h-[90vh]">
-            <div class="flex justify-between items-center mb-4 pb-3 border-b border-white/10">
-                <h3 class="font-bold text-base flex items-center gap-2">
-                    <i class="fa-solid fa-pen-to-square"></i> JSON Data Editor
-                </h3>
-                <button onclick="closeModal()" class="text-sec hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <p class="text-xs text-sec mb-3">
-                Paste or modify the user JSON array. Accepts format: <code>[{"name":"username", "commits":[0,1,2,...]}]</code> or plain commit array <code>[0,1,2,...]</code>.
-            </p>
-
-            <textarea id="jsonInput" class="w-full h-64 p-3 font-mono text-xs rounded-xl bg-black/50 border border-white/10 focus:outline-none focus:border-emerald-500 text-emerald-400 mb-4 resize-none"></textarea>
-
-            <div class="flex justify-between items-center gap-2 pt-2">
-                <button onclick="copyCurrentJSON()" class="text-xs px-4 py-2 rounded-lg custom-card hover:bg-white/5 font-medium text-sec hover:text-white transition">
-                    <i class="fa-solid fa-copy mr-1"></i> Copy JSON
-                </button>
-                <div class="flex gap-2">
-                    <button onclick="closeModal()" class="text-xs px-4 py-2 rounded-lg custom-card hover:bg-white/5 font-medium text-sec hover:text-white transition">Cancel</button>
-                    <button onclick="applyJSONEdit()" class="text-xs px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition shadow-lg shadow-emerald-900/30">Apply Changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Default Data Set provided by User
+        // Default Permanent Data Set
         const DEFAULT_DATA = [{"name":"istiaque07","commits":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,3,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,2,3,1,0,0,1,1,2,3,1,1,0,1,3,1,3,0,1,0,1,2,2,2,0,1,1,1,1,2,2,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,1,0,0,0,0,0,2,2,1,1,1,1,2,2,2,2,2,2,2,3,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,1,1,1,1,1,1,1,1,2,3,2,0,0,0,0,0,0,0,0,2,1,1,1,1,1,2,2,0,0,2,1,1,2,1,0,0,2,0,0,2,1,0,0,2,1,2,0,1,1,1,2,1,1,0,0,0,0,0,0,0,0,1,2,2,2,2,0,1,3,1,1,1,1,1,1,1,0,0,0,1,2,1,1,0,0,2,1,2,1,1,1,1,1,3,0,0,1,1,1,1,0,3,0,0,0,0,0,0,0,4,2,2,2,2,2,0,0,0,0,0,0,2,1,0,0,0,0,0,2,1,2,2,2,2,2,2,1,2,3,2,2,1,1,0,0,0,0,0,0,0,0,3,3,1,3,2,2,1,1,1,0,4,0,1,1,1,1,0,4,0,1,1,1,1,0,3,0,1,1,1,1,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}];
 
         let currentUsername = "istiaque07";
@@ -1187,7 +1152,6 @@
         const themes = ["github-dark", "halloween", "neon", "ocean"];
         let currentThemeIndex = 0;
         let themeInterval = null;
-        let isAutoThemeActive = true;
 
         function changeTheme(themeName) {
             document.documentElement.setAttribute('data-theme', themeName);
@@ -1202,23 +1166,6 @@
                 currentThemeIndex = (currentThemeIndex + 1) % themes.length;
                 changeTheme(themes[currentThemeIndex]);
             }, 1000);
-        }
-
-        function toggleAutoTheme() {
-            const btn = document.getElementById('autoThemeBtn');
-            if (isAutoThemeActive) {
-                clearInterval(themeInterval);
-                isAutoThemeActive = false;
-                btn.classList.remove('text-emerald-400');
-                btn.classList.add('text-sec');
-                btn.innerHTML = '<i class="fa-solid fa-play"></i> Auto Theme (Paused)';
-            } else {
-                startThemeInterval();
-                isAutoThemeActive = true;
-                btn.classList.remove('text-sec');
-                btn.classList.add('text-emerald-400');
-                btn.innerHTML = '<i class="fa-solid fa-sync fa-spin"></i> Auto Theme (1s)';
-            }
         }
 
         function loadPreset(type) {
@@ -1243,15 +1190,13 @@
             
             const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             
-            // Assume 53 weeks. Approximate months placement across 53 columns
             let currentMonthIdx = 0;
-            const weekWidth = 14; // cell width 11px + gap 3px
+            const weekWidth = 14;
 
             for (let week = 0; week < 53; week++) {
                 const monthSpan = document.createElement('span');
                 monthSpan.style.width = `${weekWidth}px`;
                 
-                // Add label roughly every 4.4 weeks
                 if (week % 4 === 0 && currentMonthIdx < 12) {
                     monthSpan.innerText = monthNames[currentMonthIdx % 12];
                     currentMonthIdx++;
@@ -1265,7 +1210,6 @@
         function updateStats() {
             const total = currentCommits.reduce((a, b) => a + b, 0);
             
-            // Calculate Streaks
             let currentStreak = 0;
             let longestStreak = 0;
             let activeDays = 0;
@@ -1322,69 +1266,8 @@
                     document.getElementById('selected-cell-info').innerText = 'Hover over a square for details';
                 });
 
-                // Interactive Edit on Click
-                cell.addEventListener('click', () => {
-                    const newCount = prompt(`Enter commit count for Day ${dayNum}:`, count);
-                    if (newCount !== null && !isNaN(newCount)) {
-                        currentCommits[index] = Math.max(0, parseInt(newCount, 10));
-                        renderCalendar();
-                    }
-                });
-
                 grid.appendChild(cell);
             });
-        }
-
-        function openModal() {
-            const dataToEdit = [{
-                name: currentUsername,
-                commits: currentCommits
-            }];
-            document.getElementById('jsonInput').value = JSON.stringify(dataToEdit, null, 2);
-            document.getElementById('jsonModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('jsonModal').classList.add('hidden');
-        }
-
-        function applyJSONEdit() {
-            try {
-                const parsed = JSON.parse(document.getElementById('jsonInput').value);
-                if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].commits) {
-                    currentUsername = parsed[0].name || "custom-user";
-                    currentCommits = parsed[0].commits;
-                } else if (Array.isArray(parsed) && typeof parsed[0] === 'number') {
-                    currentCommits = parsed;
-                } else {
-                    alert('Invalid JSON structure. Please check the format.');
-                    return;
-                }
-                renderCalendar();
-                closeModal();
-            } catch (e) {
-                alert('Invalid JSON syntax: ' + e.message);
-            }
-        }
-
-        function copyCurrentJSON() {
-            const dataToCopy = [{
-                name: currentUsername,
-                commits: currentCommits
-            }];
-            const text = JSON.stringify(dataToCopy);
-            
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-
-            const copyBtn = event.currentTarget;
-            const originalText = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> Copied!';
-            setTimeout(() => copyBtn.innerHTML = originalText, 2000);
         }
 
         window.onload = function() {
@@ -1393,6 +1276,7 @@
         };
     </script>
 </body>
+
     </section>
     <!-- ABOUT / TERMINAL -->
     <section>
