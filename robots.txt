@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://istiaquelll.github.io/portfolio/sitemap.xml
+Sitemap: https://istiaque07/github.io/istiaque07/blob/main/sitemap./xml
