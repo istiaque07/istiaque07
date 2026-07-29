@@ -2,6 +2,7 @@
 I am vibe coder developer cyber and ai enthusiast. Founder and CEO of zoomerz.
 Heres the link to my portfolio site :https://istiaque07.github.io/istiaque07/
 
+<img src="https://rshah.org" alt="GitHub Contributions Calendar" />
 
 ## 🌐 Socials:
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/Istiaque.at) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/Istiaque.at_23) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/istiaque-ahmed-ba69013b4) [![Pinterest](https://img.shields.io/badge/Pinterest-%23E60023.svg?logo=Pinterest&logoColor=white)](https://pinterest.com/ishtiaquegameryt) [![Reddit](https://img.shields.io/badge/Reddit-%23FF4500.svg?logo=Reddit&logoColor=white)](https://reddit.com/user/u/GullibleReply6006) 
